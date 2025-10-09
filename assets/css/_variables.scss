@@ -1,0 +1,97 @@
+/**
+ * Sass Variables
+ *
+ * All Sass variables should be defined in this file.
+ * This includes colors, fonts, breakpoints, etc.
+ */
+// Color palette based on the design images
+$color-cream-light: #F5F2ED;
+$color-cream: #EBE5DD;
+$color-cream-dark: #E3DDD3;
+
+$color-brown-light: #8B7355;
+$color-brown: #6B5444;
+$color-brown-dark: #4A3C2F;
+
+$color-pink-light: #F4C7C7;
+$color-pink: #E6B8B8;
+$color-pink-dark: #D4A5A5;
+
+$color-taupe: #B8AFA5;
+$color-charcoal: #2C2C2C;
+$color-white: #FFFFFF;
+$color-black: #000000;
+
+// Primary color scheme
+$color-primary: $color-brown;
+$color-secondary: $color-pink;
+$color-accent: $color-taupe;
+$color-background: $color-cream-light;
+$color-text: $color-charcoal;
+
+// Typography
+$font-primary: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+$font-secondary: 'Playfair Display', Georgia, serif;
+$font-mono: 'Courier New', Courier, monospace;
+
+$font-size-base: 16px;
+$font-size-sm: 14px;
+$font-size-lg: 18px;
+$font-size-xl: 24px;
+$font-size-2xl: 32px;
+$font-size-3xl: 48px;
+
+$font-weight-light: 300;
+$font-weight-normal: 400;
+$font-weight-medium: 500;
+$font-weight-semibold: 600;
+$font-weight-bold: 700;
+
+$line-height-tight: 1.2;
+$line-height-normal: 1.5;
+$line-height-relaxed: 1.75;
+
+// Spacing
+$spacing-xs: 0.5rem;    // 8px
+$spacing-sm: 1rem;      // 16px
+$spacing-md: 1.5rem;    // 24px
+$spacing-lg: 2rem;      // 32px
+$spacing-xl: 3rem;      // 48px
+$spacing-2xl: 4rem;     // 64px
+$spacing-3xl: 6rem;     // 96px
+
+// Container
+$container-max-width: 1440px;
+$container-padding: 2rem;
+
+// Breakpoints
+$breakpoint-sm: 640px;
+$breakpoint-md: 768px;
+$breakpoint-lg: 1024px;
+$breakpoint-xl: 1280px;
+$breakpoint-2xl: 1536px;
+
+// Transitions
+$transition-base: all 0.3s ease;
+$transition-fast: all 0.15s ease;
+$transition-slow: all 0.5s ease;
+
+// Border radius
+$border-radius-sm: 4px;
+$border-radius-md: 8px;
+$border-radius-lg: 16px;
+$border-radius-full: 9999px;
+
+// Shadows
+$shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+$shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+$shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+
+// Z-index
+$z-index-dropdown: 1000;
+$z-index-sticky: 1020;
+$z-index-fixed: 1030;
+$z-index-modal-backdrop: 1040;
+$z-index-modal: 1050;
+$z-index-popover: 1060;
+$z-index-tooltip: 1070;

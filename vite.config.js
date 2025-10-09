@@ -9,7 +9,7 @@ export default defineConfig({
     rollupOptions: {
       input: {
         main: resolve(process.cwd(), 'assets/js/main.js'),
-        style: resolve(process.cwd(), 'assets/css/main.css'),
+        style: resolve(process.cwd(), 'assets/css/style.scss'),
       },
       output: {
         entryFileNames: 'js/[name].js',

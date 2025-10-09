@@ -1,0 +1,57 @@
+@use 'tailwindcss/base';
+@use 'tailwindcss/components';
+@use 'tailwindcss/utilities';
+ 
+ // Import Styles
+ @use 'variables' as *;
+ @use 'font' as *;
+ @use 'navigation' as *;
+ @use 'general' as *;
+ @use 'sections' as *;
+ @use 'contact-form' as *;
+
+ /**
+ * Main Stylesheet for therosessom Theme
+ * Modern WordPress Photography Theme with Tailwind CSS
+ */
+
+// Custom layer definitions
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    font-family: $font-primary;
+    font-size: $font-size-base;
+    line-height: $line-height-normal;
+    color: $color-text;
+    background-color: $color-background;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: $font-secondary;
+    font-weight: $font-weight-semibold;
+    line-height: $line-height-tight;
+    color: $color-charcoal;
+  }
+
+  a {
+    color: $color-primary;
+    text-decoration: none;
+    transition: $transition-base;
+
+    &:hover {
+      color: $color-brown-light;
+    }
+  }
+
+  img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover;
+  }
+}
