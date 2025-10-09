@@ -5,8 +5,9 @@
   "description": "Studio Theme",
   "main": "index.js",
   "scripts": {
-    "dev": "vite --host",
+    "dev": "touch .dev && vite --host",
     "build": "vite build",
+    "stop": "rm -f .dev",
     "preview": "vite preview",
     "watch": "vite build --watch",
     "lint:js": "eslint assets/js/**/*.js --fix",

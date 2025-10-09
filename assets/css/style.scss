@@ -24,27 +24,27 @@
   }
 
   body {
-    font-family: $font-primary;
-    font-size: $font-size-base;
-    line-height: $line-height-normal;
-    color: $color-text;
-    background-color: $color-background;
+    font-family: theme('fontFamily.sans');
+    font-size: theme('fontSize.base');
+    line-height: theme('lineHeight.normal');
+    color: theme('colors.charcoal');
+    background-color: theme('colors.cream.light');
   }
 
   h1, h2, h3, h4, h5, h6 {
-    font-family: $font-secondary;
-    font-weight: $font-weight-semibold;
-    line-height: $line-height-tight;
-    color: $color-charcoal;
+    font-family: theme('fontFamily.serif');
+    font-weight: theme('fontWeight.semibold');
+    line-height: theme('lineHeight.tight');
+    color: theme('colors.charcoal');
   }
 
   a {
-    color: $color-primary;
+    color: theme('colors.brown.DEFAULT');
     text-decoration: none;
     transition: $transition-base;
 
     &:hover {
-      color: $color-brown-light;
+      color: theme('colors.brown.light');
     }
   }
 
