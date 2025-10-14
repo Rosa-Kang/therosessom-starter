@@ -10,6 +10,9 @@
  */
 ?>
 
+</main><!-- #content -->
+
+
     <footer id="colophon" class="site-footer bg-charcoal text-cream-light text-sm">
         <div class="container mx-auto py-12 text-center">
             <p>&copy; <?php echo date('Y'); ?> <?php bloginfo('name'); ?>. All Rights Reserved.</p>

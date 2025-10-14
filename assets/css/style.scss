@@ -1,16 +1,18 @@
+// Import Tailwind CSS
 @use 'tailwindcss/base';
 @use 'tailwindcss/components';
 @use 'tailwindcss/utilities';
- 
- // Import Styles
- @use 'variables' as *;
- @use 'font' as *;
- @use 'navigation' as *;
- @use 'general' as *;
- @use 'sections' as *;
- @use 'contact-form' as *;
 
- /**
+// Import Custom Styles
+@use 'variables';
+@use 'font';
+@use 'navigation';
+@use 'general';
+@use 'sections';
+@use 'contact-form';
+
+
+/**
  * Main Stylesheet for therosessom Theme
  * Modern WordPress Photography Theme with Tailwind CSS
  */
@@ -41,7 +43,7 @@
   a {
     color: theme('colors.brown.DEFAULT');
     text-decoration: none;
-    transition: $transition-base;
+    transition: all 0.3s ease;
 
     &:hover {
       color: theme('colors.brown.light');

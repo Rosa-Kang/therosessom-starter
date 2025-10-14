@@ -1,0 +1,42 @@
+/****
+Navigation Style
+*****/
+
+header#masthead {
+    // 부드러운 전환 효과
+    transition: background-color 0.4s ease-in-out, box-shadow 0.4s ease-in-out;
+
+    .site-branding {
+        .logo-light svg,
+        .logo-dark {
+            max-height: 87px;
+        }
+    }
+
+    #site-navigation a {
+        color: theme('colors.cream.light'); // 기본 메뉴 텍스트 색상
+        transition: color 0.4s ease-in-out;
+    }
+
+    /* &.header-hidden { ... }  <-- 이 부분을 완전히 삭제했습니다.
+    */
+
+    // 스크롤이 내려갔을 때의 스타일
+    &.scrolled {
+        background-color: theme('colors.cream.light');
+        box-shadow: theme('boxShadow.md');
+
+        // 로고 교체
+        .logo-light {
+            display: none;
+        }
+        .logo-dark {
+            display: block !important;
+        }
+
+        // 메뉴 텍스트 색상 변경
+        #site-navigation a {
+            color: theme('colors.brown.dark'); 
+        }
+    }
+}

@@ -1,0 +1,158 @@
+{
+  "key": "group_hero_section",
+  "title": "Hero Section",
+  "fields": [
+    {
+      "key": "field_hero_type",
+      "label": "Hero Type",
+      "name": "hero_type",
+      "aria-label": "",
+      "type": "button_group",
+      "instructions": "Choose hero background type",
+      "required": 1,
+      "conditional_logic": 0,
+      "wrapper": {
+        "width": "",
+        "class": "",
+        "id": ""
+      },
+      "choices": {
+        "images": "Image Slider",
+        "video": "Video Background"
+      },
+      "default_value": "images",
+      "return_format": "value",
+      "allow_null": 0,
+      "layout": "horizontal"
+    },
+    {
+      "key": "field_hero_images",
+      "label": "Hero Images",
+      "name": "hero_images",
+      "aria-label": "",
+      "type": "gallery",
+      "instructions": "Add one or more images. Single image will display as static background, multiple images will create a slider. Recommended size: 1920x1080px or larger.",
+      "required": 1,
+      "conditional_logic": [
+        [
+          {
+            "field": "field_hero_type",
+            "operator": "==",
+            "value": "images"
+          }
+        ]
+      ],
+      "wrapper": {
+        "width": "",
+        "class": "",
+        "id": ""
+      },
+      "return_format": "array",
+      "library": "all",
+      "min": 1,
+      "max": 0,
+      "min_width": "",
+      "min_height": "",
+      "min_size": "",
+      "max_width": "",
+      "max_height": "",
+      "max_size": "",
+      "mime_types": "jpg,jpeg,png,webp",
+      "insert": "append",
+      "preview_size": "medium"
+    },
+    {
+      "key": "field_hero_video",
+      "label": "Hero Video",
+      "name": "hero_video",
+      "aria-label": "",
+      "type": "file",
+      "instructions": "Upload video file. MP4 format recommended. Keep file size under 50MB for better performance.",
+      "required": 1,
+      "conditional_logic": [
+        [
+          {
+            "field": "field_hero_type",
+            "operator": "==",
+            "value": "video"
+          }
+        ]
+      ],
+      "wrapper": {
+        "width": "",
+        "class": "",
+        "id": ""
+      },
+      "return_format": "array",
+      "library": "all",
+      "min_size": "",
+      "max_size": 52428800,
+      "mime_types": "mp4,webm,mov"
+    },
+    {
+      "key": "field_hero_video_poster",
+      "label": "Video Poster Image",
+      "name": "hero_video_poster",
+      "aria-label": "",
+      "type": "image",
+      "instructions": "Fallback image displayed while video is loading or if video fails to play.",
+      "required": 0,
+      "conditional_logic": [
+        [
+          {
+            "field": "field_hero_type",
+            "operator": "==",
+            "value": "video"
+          }
+        ]
+      ],
+      "wrapper": {
+        "width": "",
+        "class": "",
+        "id": ""
+      },
+      "return_format": "array",
+      "library": "all",
+      "min_width": "",
+      "min_height": "",
+      "min_size": "",
+      "max_width": "",
+      "max_height": "",
+      "max_size": "",
+      "mime_types": "jpg,jpeg,png,webp",
+      "preview_size": "medium"
+    }
+  ],
+  "location": [
+    [
+      {
+        "param": "page_type",
+        "operator": "==",
+        "value": "front_page"
+      }
+    ],
+    [
+      {
+        "param": "post_slug",
+        "operator": "==",
+        "value": "studio"
+      }
+    ],
+    [
+      {
+        "param": "post_slug",
+        "operator": "==",
+        "value": "package"
+      }
+    ]
+  ],
+  "menu_order": 0,
+  "position": "normal",
+  "style": "default",
+  "label_placement": "left",
+  "instruction_placement": "label",
+  "hide_on_screen": "",
+  "active": true,
+  "description": "Hero section configuration for the front page",
+  "show_in_rest": 0
+}

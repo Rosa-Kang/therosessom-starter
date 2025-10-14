@@ -11,7 +11,7 @@ export default {
       colors: {
         // Base colors from the design
         cream: {
-          light: '#F5F2ED',
+          light: '#FBF8EF',
           DEFAULT: '#EBE5DD',
           dark: '#E3DDD3'
         },

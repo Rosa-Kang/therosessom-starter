@@ -1,0 +1,109 @@
+{
+  "key": "group_intro_section",
+  "title": "Intro Section",
+  "fields": [
+    {
+      "key": "field_intro_image",
+      "label": "Intro Image",
+      "name": "intro_image",
+      "aria-label": "",
+      "type": "image",
+      "instructions": "Upload an image for the intro section. Recommended size: 800x1000px or larger.",
+      "required": 1,
+      "conditional_logic": 0,
+      "wrapper": {
+        "width": "",
+        "class": "",
+        "id": ""
+      },
+      "return_format": "array",
+      "library": "all",
+      "min_width": "",
+      "min_height": "",
+      "min_size": "",
+      "max_width": "",
+      "max_height": "",
+      "max_size": "",
+      "mime_types": "jpg,jpeg,png,webp",
+      "preview_size": "medium"
+    },
+    {
+      "key": "field_intro_title",
+      "label": "Intro Title",
+      "name": "intro_title",
+      "aria-label": "",
+      "type": "text",
+      "instructions": "Main title for the intro section",
+      "required": 1,
+      "conditional_logic": 0,
+      "wrapper": {
+        "width": "",
+        "class": "",
+        "id": ""
+      },
+      "default_value": "",
+      "maxlength": "",
+      "placeholder": "e.g., DIRECTOR",
+      "prepend": "",
+      "append": ""
+    },
+    {
+      "key": "field_intro_accent_title",
+      "label": "Accent Title",
+      "name": "intro_accent_title",
+      "aria-label": "",
+      "type": "text",
+      "instructions": "Accent text to display with the title (e.g., name or special word)",
+      "required": 0,
+      "conditional_logic": 0,
+      "wrapper": {
+        "width": "",
+        "class": "",
+        "id": ""
+      },
+      "default_value": "Jio",
+      "maxlength": "",
+      "placeholder": "Jio",
+      "prepend": "",
+      "append": ""
+    },
+    {
+      "key": "field_intro_content",
+      "label": "Intro Content",
+      "name": "intro_content",
+      "aria-label": "",
+      "type": "wysiwyg",
+      "instructions": "Description or bio text for the intro section",
+      "required": 1,
+      "conditional_logic": 0,
+      "wrapper": {
+        "width": "",
+        "class": "",
+        "id": ""
+      },
+      "default_value": "",
+      "tabs": "all",
+      "toolbar": "basic",
+      "media_upload": 0,
+      "delay": 0
+    }
+  ],
+  "location": [
+    [
+      {
+        "param": "page_type",
+        "operator": "==",
+        "value": "front_page"
+      }
+    ]
+  ],
+  "menu_order": 1,
+  "position": "normal",
+  "style": "default",
+  "label_placement": "left",
+  "instruction_placement": "label",
+  "hide_on_screen": "",
+  "active": true,
+  "description": "Intro section configuration for the front page",
+  "show_in_rest": 0
+}

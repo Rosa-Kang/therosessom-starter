@@ -87,19 +87,26 @@ function vite_asset_loader() {
 
     if ( $is_dev ) {
         // Development: Load scripts from Vite dev server
+        // Vite dev server handles CSS through HMR (Hot Module Replacement)
         wp_enqueue_script( 'vite-client', VITE_DEV_SERVER . '/@vite/client', [], null, true );
         wp_enqueue_script( 'therosessom-main-js', VITE_DEV_SERVER . '/assets/js/main.js', [], THEME_VERSION, true );
-        wp_enqueue_style( 'therosessom-main-css', VITE_DEV_SERVER . '/assets/css/style.scss', [], THEME_VERSION );
 
     } else {
         // Production: Load scripts from the manifest file
-        $manifest_path = get_template_directory() . '/dist/manifest.json';
+        $manifest_path = get_template_directory() . '/dist/.vite/manifest.json';
         if ( file_exists( $manifest_path ) ) {
             $manifest = json_decode( file_get_contents( $manifest_path ), true );
 
             // Enqueue the main JS file
             if ( isset( $manifest['assets/js/main.js']['file'] ) ) {
                 wp_enqueue_script( 'therosessom-main-js', get_template_directory_uri() . '/dist/' . $manifest['assets/js/main.js']['file'], [], THEME_VERSION, true );
+            }
+
+            // Enqueue CSS files for the main JS entry
+            if ( isset( $manifest['assets/js/main.js']['css'] ) ) {
+                foreach ( $manifest['assets/js/main.js']['css'] as $css_file ) {
+                    wp_enqueue_style( 'therosessom-' . basename($css_file, '.css'), get_template_directory_uri() . '/dist/' . $css_file, [], THEME_VERSION );
+                }
             }
 
             // Enqueue the main CSS file
@@ -111,7 +118,6 @@ function vite_asset_loader() {
 }
 add_action( 'wp_enqueue_scripts', 'vite_asset_loader' );
 
-
 /**
  * Add module type to the main script tag to support ES modules.
  */
@@ -121,3 +127,52 @@ add_filter('script_loader_tag', function (string $tag, string $handle, string $s
     }
     return $tag;
 }, 10, 3);
+
+
+/**
+ * ACF JSON Save/Load Points
+ * Enables version control for ACF fields
+ */
+add_filter('acf/settings/save_json', function($path) {
+    return get_stylesheet_directory() . '/acf-json';
+});
+
+add_filter('acf/settings/load_json', function($paths) {
+    unset($paths[0]);
+    $paths[] = get_stylesheet_directory() . '/acf-json';
+    return $paths;
+});
+
+/**
+ * Auto-sync ACF JSON fields on admin init
+ * Automatically syncs field groups from JSON files
+ */
+add_action('admin_init', function() {
+    // Only run in admin area and if ACF is active
+    if (!function_exists('acf_get_field_groups')) {
+        return;
+    }
+    
+    // Get all field groups from JSON
+    $json_files = glob(get_stylesheet_directory() . '/acf-json/*.json');
+    
+    if (empty($json_files)) {
+        return;
+    }
+    
+    foreach ($json_files as $file) {
+        $json = json_decode(file_get_contents($file), true);
+        
+        if (!$json || !isset($json['key'])) {
+            continue;
+        }
+        
+        // Check if field group exists in database
+        $field_group = acf_get_field_group($json['key']);
+        
+        // If doesn't exist or modified time is different, import it
+        if (!$field_group || (isset($json['modified']) && $field_group['modified'] != $json['modified'])) {
+            acf_import_field_group($json);
+        }
+    }
+});
