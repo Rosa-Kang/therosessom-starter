@@ -1,0 +1,109 @@
+{
+    "key": "group_callout_link_section",
+    "title": "Callout Link Section",
+    "fields": [
+        {
+            "key": "field_callout_link_title",
+            "label": "Section Title",
+            "name": "callout_link_title",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "Enter the main title for this section (e.g., Collection).",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "Collection",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_callout_link_image",
+            "label": "Image",
+            "name": "callout_link_image",
+            "aria-label": "",
+            "type": "image",
+            "instructions": "Upload the main image for the right side of the section.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "array",
+            "library": "all",
+            "min_width": "",
+            "min_height": "",
+            "min_size": "",
+            "max_width": "",
+            "max_height": "",
+            "max_size": "",
+            "mime_types": "jpg,jpeg,png,webp",
+            "preview_size": "medium"
+        },
+        {
+            "key": "field_callout_link_links",
+            "label": "Links",
+            "name": "callout_link_links",
+            "aria-label": "",
+            "type": "repeater",
+            "instructions": "Add links for the list. The number will be generated automatically.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "layout": "table",
+            "min": 0,
+            "max": 0,
+            "collapsed": "",
+            "button_label": "Add Link",
+            "rows_per_page": 20,
+            "sub_fields": [
+                {
+                    "key": "field_callout_link_links_link",
+                    "label": "Link",
+                    "name": "link",
+                    "aria-label": "",
+                    "type": "link",
+                    "instructions": "Set the URL and the display text for the link.",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "return_format": "array",
+                    "parent_repeater": "field_callout_link_links"
+                }
+            ]
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "page"
+            }
+        ]
+    ],
+    "menu_order": 3,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "left",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "A section with a title, a list of links (repeater), and an image.",
+    "show_in_rest": 0
+}

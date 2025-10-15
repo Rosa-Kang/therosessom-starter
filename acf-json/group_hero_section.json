@@ -137,12 +137,6 @@
                 "operator": "==",
                 "value": "studio-page.php"
             }
-        ],
-        [
-            {
-                "param": "post_type",
-                "operator": "=="
-            }
         ]
     ],
     "menu_order": 0,
@@ -155,5 +149,5 @@
     "description": "Hero section configuration for the front page",
     "show_in_rest": 0,
     "display_title": "",
-    "modified": 1760402630
+    "modified": 1760490777
 }
