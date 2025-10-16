@@ -32,9 +32,10 @@ export default {
         charcoal: '#2C2C2C'
       },
       fontFamily: {
-        sans: ['Inter', 'system-ui', '-apple-system', 'sans-serif'],
-        serif: ['Playfair Display', 'Georgia', 'serif'],
-        mono: ['Courier New', 'monospace']
+        sans: ['Heebo', 'system-ui', '-apple-system', 'sans-serif'],
+        serif: ['Scope One', 'Georgia', 'serif'],
+        mono: ['Courier New', 'monospace'],
+        cursive: ['Calligraffitti', 'cursive']
       },
       spacing: {
         '128': '32rem',
