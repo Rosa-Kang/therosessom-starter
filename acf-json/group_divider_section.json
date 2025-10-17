@@ -1,146 +1,113 @@
 {
-  "key": "group_divider_section",
-  "title": "Divider Section",
-  "fields": [
-    {
-      "key": "field_divider_left_title",
-      "label": "Left Section Title",
-      "name": "divider_left_title",
-      "aria-label": "",
-      "type": "text",
-      "instructions": "Title for the left section (e.g., STUDIO)",
-      "required": 1,
-      "conditional_logic": 0,
-      "wrapper": {
-        "width": "50",
-        "class": "",
-        "id": ""
-      },
-      "default_value": "STUDIO",
-      "maxlength": "",
-      "placeholder": "STUDIO",
-      "prepend": "",
-      "append": ""
-    },
-    {
-      "key": "field_divider_right_title",
-      "label": "Right Section Title",
-      "name": "divider_right_title",
-      "aria-label": "",
-      "type": "text",
-      "instructions": "Title for the right section (e.g., SHOP)",
-      "required": 1,
-      "conditional_logic": 0,
-      "wrapper": {
-        "width": "50",
-        "class": "",
-        "id": ""
-      },
-      "default_value": "SHOP",
-      "maxlength": "",
-      "placeholder": "SHOP",
-      "prepend": "",
-      "append": ""
-    },
-    {
-      "key": "field_divider_left_image",
-      "label": "Left Section Image",
-      "name": "divider_left_image",
-      "aria-label": "",
-      "type": "image",
-      "instructions": "Upload an image for the left section. Recommended size: 800x1000px or larger.",
-      "required": 1,
-      "conditional_logic": 0,
-      "wrapper": {
-        "width": "50",
-        "class": "",
-        "id": ""
-      },
-      "return_format": "array",
-      "library": "all",
-      "min_width": "",
-      "min_height": "",
-      "min_size": "",
-      "max_width": "",
-      "max_height": "",
-      "max_size": "",
-      "mime_types": "jpg,jpeg,png,webp",
-      "preview_size": "medium"
-    },
-    {
-      "key": "field_divider_right_image",
-      "label": "Right Section Image",
-      "name": "divider_right_image",
-      "aria-label": "",
-      "type": "image",
-      "instructions": "Upload an image for the right section. Recommended size: 800x1000px or larger.",
-      "required": 1,
-      "conditional_logic": 0,
-      "wrapper": {
-        "width": "50",
-        "class": "",
-        "id": ""
-      },
-      "return_format": "array",
-      "library": "all",
-      "min_width": "",
-      "min_height": "",
-      "min_size": "",
-      "max_width": "",
-      "max_height": "",
-      "max_size": "",
-      "mime_types": "jpg,jpeg,png,webp",
-      "preview_size": "medium"
-    },
-    {
-      "key": "field_divider_left_link",
-      "label": "Left Section Link",
-      "name": "divider_left_link",
-      "aria-label": "",
-      "type": "link",
-      "instructions": "Link for the left section (e.g., studio page)",
-      "required": 0,
-      "conditional_logic": 0,
-      "wrapper": {
-        "width": "50",
-        "class": "",
-        "id": ""
-      },
-      "return_format": "array"
-    },
-    {
-      "key": "field_divider_right_link",
-      "label": "Right Section Link",
-      "name": "divider_right_link",
-      "aria-label": "",
-      "type": "link",
-      "instructions": "Link for the right section (e.g., shop page)",
-      "required": 0,
-      "conditional_logic": 0,
-      "wrapper": {
-        "width": "50",
-        "class": "",
-        "id": ""
-      },
-      "return_format": "array"
-    }
-  ],
-  "location": [
-    [
-      {
-        "param": "page_type",
-        "operator": "==",
-        "value": "front_page"
-      }
-    ]
-  ],
-  "menu_order": 2,
-  "position": "normal",
-  "style": "default",
-  "label_placement": "left",
-  "instruction_placement": "label",
-  "hide_on_screen": "",
-  "active": true,
-  "description": "Divider section configuration - split layout with two sections",
-  "show_in_rest": 0
+    "key": "group_divider_section",
+    "title": "Divider Section",
+    "fields": [
+        {
+            "key": "field_divider_items",
+            "label": "Divider Items",
+            "name": "divider_items",
+            "aria-label": "",
+            "type": "repeater",
+            "instructions": "Add items for the divider section.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "collapsed": "",
+            "min": 0,
+            "max": 0,
+            "layout": "row",
+            "button_label": "Add Divider Item",
+            "rows_per_page": 20,
+            "sub_fields": [
+                {
+                    "key": "field_divider_title",
+                    "label": "Title",
+                    "name": "title",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "parent_repeater": "field_divider_items"
+                },
+                {
+                    "key": "field_divider_image",
+                    "label": "Image",
+                    "name": "image",
+                    "aria-label": "",
+                    "type": "image",
+                    "instructions": "",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "return_format": "array",
+                    "preview_size": "medium",
+                    "library": "all",
+                    "min_width": 0,
+                    "min_height": 0,
+                    "min_size": 0,
+                    "max_width": 0,
+                    "max_height": 0,
+                    "max_size": 0,
+                    "mime_types": "",
+                    "parent_repeater": "field_divider_items"
+                },
+                {
+                    "key": "field_divider_link",
+                    "label": "Link",
+                    "name": "link",
+                    "aria-label": "",
+                    "type": "link",
+                    "instructions": "",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "return_format": "array",
+                    "parent_repeater": "field_divider_items"
+                }
+            ]
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "page_type",
+                "operator": "==",
+                "value": "front_page"
+            }
+        ]
+    ],
+    "menu_order": 2,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "left",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "",
+    "show_in_rest": 0,
+    "display_title": "",
+    "modified": 1760664467
 }

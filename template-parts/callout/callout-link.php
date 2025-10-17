@@ -29,7 +29,7 @@ if (!$title && !$image && !$links) {
                 
                 <div>
                     <?php if ($title) : ?>
-                        <h2 class="text-2xl md:text-3xl text-charcoal/80 mb-16 md:mb-24">
+                        <h2 class="text-xl font-serif font-normal mb-16 md:mb-24">
                             <?php echo esc_html($title); ?>
                         </h2>
                     <?php endif; ?>
@@ -50,11 +50,11 @@ if (!$title && !$image && !$links) {
                                     $formatted_index = str_pad($link_index, 2, '0', STR_PAD_LEFT);
                             ?>
                                 <li>
-                                    <a href="<?php echo $link_url; ?>" <?php echo $link_target; ?> class="group flex items-center justify-between py-2 border-b border-charcoal/30 hover:border-charcoal transition-colors duration-300">
-                                        <span class="text-lg font-light tracking-wide group-hover:text-charcoal-dark">
+                                    <a href="<?php echo $link_url; ?>" <?php echo $link_target; ?> class="group flex items-center justify-between py-2 border-b-2 border-black hover-draw-line">
+                                        <span class="text-sm font-light text-black group-hover:text-brown transition-colors duration-300">
                                             <?php echo $link_title; ?>
                                         </span>
-                                        <span class="text-sm font-mono text-charcoal/70">
+                                        <span class="text-sm font-medium text-black">
                                             <?php echo $formatted_index; ?>
                                         </span>
                                     </a>

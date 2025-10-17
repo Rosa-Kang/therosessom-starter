@@ -217,5 +217,23 @@
       }
     }
   }
+}
+
+  // Callout Link Hover Effect
+  .hover-draw-line {
+    position: relative;
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: -2px; // Adjust to cover the border
+      left: 0;
+      width: 0;
+      height: 2px; // Match the border width
+      background-color: theme('colors.brown.DEFAULT');
+      transition: width 0.6s ease-out;
+    }
+    &:hover::after {
+      width: 100%;
+    }
   }
 }

@@ -41,7 +41,7 @@ if (!$intro_image && !$intro_title && !$intro_content) {
                     
                     <!-- Polaroid Caption -->
                     <?php if ($intro_image['caption']) : ?>
-                        <p class="polaroid-caption text-sm text-gray-600 mt-3 font-mono">
+                        <p class="polaroid-caption text-sm leading-[18px] mt-3 font-mono">
                             <?php echo esc_html($intro_image['caption']); ?>
                         </p>
                     <?php endif; ?>
@@ -66,14 +66,14 @@ if (!$intro_image && !$intro_title && !$intro_content) {
         
         <!-- Content -->
         <?php if ($intro_content) : ?>
-            <div class="intro-content text-base md:text-lg text-charcoal leading-relaxed max-w-xl mx-auto" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="400">
+            <div class="intro-content text-sm leading-[18px] max-w-xl mx-auto" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="400">
                 <?php echo wp_kses_post($intro_content); ?>
             </div>
         <?php endif; ?>
         
         <!-- Scroll Indicator (Optional) -->
-        <div class="intro-scroll-indicator mt-16 md:mt-20" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="600">
-            <svg class="w-6 h-6 mx-auto text-charcoal animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <div class="intro-scroll-indicator group cursor-pointer mt-16 md:mt-20" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="600">
+            <svg class="w-6 h-6 mx-auto text-charcoal group-hover:animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
             </svg>
         </div>
