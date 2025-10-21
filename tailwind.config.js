@@ -6,6 +6,13 @@ export default {
     './template-parts/**/*.php',
     './assets/js/**/*.js'
   ],
+  safelist: [
+    'opacity-0', 'opacity-100',
+    'translate-x-full', 'translate-x-0',
+    'translate-y-2',
+    'scale-0',
+    'transition-all', 'duration-300', 'duration-500', 'ease-out'
+  ],
   theme: {
     extend: {
       colors: {

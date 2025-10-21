@@ -12,7 +12,8 @@ import 'swiper/css/effect-fade';
 document.addEventListener('DOMContentLoaded', () => {
   initHeroSwiper();
   initHeroVideo();
-  initScrollHeader(); 
+  initScrollHeader();
+  initMobileMenu();
 });
 
 /**
@@ -20,15 +21,12 @@ document.addEventListener('DOMContentLoaded', () => {
  */
 function initHeroSwiper() {
   const heroSwiper = document.querySelector('.hero-swiper');
-  
   if (!heroSwiper) return;
   
   new Swiper('.hero-swiper', {
     modules: [Navigation, Pagination, Autoplay, EffectFade],
     effect: 'fade',
-    fadeEffect: {
-      crossFade: true
-    },
+    fadeEffect: { crossFade: true },
     speed: 1000,
     autoplay: {
       delay: 5000,
@@ -44,14 +42,6 @@ function initHeroSwiper() {
       el: '.swiper-pagination',
       clickable: true,
       dynamicBullets: true
-    },
-    keyboard: {
-      enabled: true,
-      onlyInViewport: false
-    },
-    a11y: {
-      prevSlideMessage: 'Previous slide',
-      nextSlideMessage: 'Next slide',
     }
   });
 }
@@ -61,60 +51,83 @@ function initHeroSwiper() {
  */
 function initHeroVideo() {
   const videoElement = document.querySelector('.hero-video-bg video');
-  
   if (!videoElement) return;
   
-  // Ensure video plays
   const playVideo = () => {
     videoElement.play().catch(error => {
       console.log('Video autoplay prevented:', error);
     });
   };
   
-  // Initial play
   playVideo();
   
-  // Handle visibility change to pause/play video
   document.addEventListener('visibilitychange', () => {
-    if (document.hidden) {
-      videoElement.pause();
-    } else {
-      playVideo();
-    }
+    document.hidden ? videoElement.pause() : playVideo();
   });
-  
-  // Ensure video is always playing when in viewport
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        playVideo();
-      } else {
-        videoElement.pause();
-      }
-    });
-  }, {
-    threshold: 0.5
-  });
-  
-  observer.observe(videoElement);
 }
 
 /**
- * Initialize Scroll-based Header Animations
+ * Initialize Scroll Header
  */
 function initScrollHeader() {
   const header = document.getElementById('masthead');
-  if (!header) return; 
-  const scrollThreshold = 400; 
+  if (!header) return;
 
   window.addEventListener('scroll', () => {
-    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-
-    
-    if (scrollTop > scrollThreshold) {
+    if (window.pageYOffset > 400) {
       header.classList.add('scrolled');
     } else {
       header.classList.remove('scrolled');
     }
-  }, false);
+  });
+}
+
+/**
+ * Initialize Mobile Menu
+ */
+function initMobileMenu() {
+  const toggleBtn = document.getElementById('secondary-menu-toggle');
+  const panel = document.getElementById('secondary-menu-panel');
+  const overlay = document.getElementById('secondary-menu-overlay');
+
+  if (!toggleBtn || !panel) return;
+
+  // Open menu
+  function openMenu() {
+    toggleBtn.classList.add('open');
+    panel.classList.remove('-translate-x-full');
+    panel.classList.add('translate-x-0');
+    if (overlay) overlay.classList.remove('hidden');
+    document.body.style.overflow = 'hidden';
+  }
+
+  // Close menu
+  function closeMenu() {
+    toggleBtn.classList.remove('open');
+    panel.classList.remove('translate-x-0');
+    panel.classList.add('-translate-x-full');
+    if (overlay) overlay.classList.add('hidden');
+    document.body.style.overflow = '';
+  }
+
+  // Toggle on button click
+  toggleBtn.addEventListener('click', () => {
+    if (toggleBtn.classList.contains('open')) {
+      closeMenu();
+    } else {
+      openMenu();
+    }
+  });
+
+  // Close on overlay click
+  if (overlay) {
+    overlay.addEventListener('click', closeMenu);
+  }
+
+  // Close on ESC key
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && toggleBtn.classList.contains('open')) {
+      closeMenu();
+    }
+  });
 }

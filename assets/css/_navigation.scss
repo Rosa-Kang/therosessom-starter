@@ -2,30 +2,35 @@
 Navigation Style
 *****/
 
+// Header styles
 header#masthead {
     transition: background-color 0.4s ease-in-out, box-shadow 0.4s ease-in-out;
 
+    // Logo styles
     .site-branding {
         .logo-light svg,
         .logo-dark {
             max-height: 87px;
         }
+
+        .logo-light {
+            display: flex;
+        }
     }
 
+    // Main navigation links
     #site-navigation a {
-        color: theme('colors.cream.light'); // 기본 메뉴 텍스트 색상
+        color: theme('colors.cream.light');
         transition: color 0.4s ease-in-out;
     }
 
-    /* &.header-hidden { ... }  <-- 이 부분을 완전히 삭제했습니다.
-    */
-
-    // 스크롤이 내려갔을 때의 스타일
+    // Scrolled state
     &.scrolled {
-        background-color: theme('colors.cream.light');
+        background-color: theme('colors.cream.light / 0.5'); 
+        backdrop-filter: blur(9px);
         box-shadow: theme('boxShadow.md');
 
-        // 로고 교체
+        // Switch logos
         .logo-light {
             display: none;
         }
@@ -33,9 +38,255 @@ header#masthead {
             display: block !important;
         }
 
-        // 메뉴 텍스트 색상 변경
+        // Change menu text color
         #site-navigation a {
             color: theme('colors.brown.dark'); 
+        }
+
+        // Change hamburger color when scrolled
+        #secondary-menu-toggle .bar {
+            background-color: theme('colors.brown.dark');
+        }
+    }
+}
+
+// Secondary menu toggle button (hamburger)
+#secondary-menu-toggle {
+    position: relative;
+    width: 20px; // Fixed width for better control
+    height: 12px; // Fixed height for better control
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    z-index: 110; // Ensure it's above the menu panel
+    
+    .bar {
+        position: absolute;
+        width: 100%;
+        height: 1px;
+        background-color: theme('colors.cream.light');
+        transition: all 0.3s cubic-bezier(0.4, 0.0, 0.2, 1); // Smoother easing
+        transform-origin: center;
+        left: 0;
+        
+        // Position bars with absolute positioning
+        &:nth-child(1) {
+            top: 0; // Top bar at 0px
+        }
+        
+        &:nth-child(2) {
+            top: 50%; // Middle bar at center
+            transform: translateY(-50%);
+        }
+        
+        &:nth-child(3) {
+            bottom: 0; // Bottom bar at bottom
+        }
+    }
+    
+    // Hamburger to X animation when menu is open
+    &.open {
+        .bar {
+            // When menu is open, bars should be dark on white background
+            background-color: theme('colors.brown.dark');
+            
+            &:nth-child(2) {
+                // Top bar moves to center and rotates 45deg
+                top: 50%;
+                transform: translateY(-50%) rotate(45deg);
+            }
+            
+            &:nth-child(3) {
+                // Middle bar fades out
+                opacity: 0;
+                transform: translateY(-50%) scale(0);
+            }
+            
+            &:nth-child(4) {
+                // Bottom bar moves to center and rotates -45deg
+                bottom: auto;
+                top: 50%;
+                transform: translateY(-50%) rotate(-45deg);
+            }
+        }
+    }
+}
+
+// Secondary menu panel (sliding menu)
+#secondary-menu-panel {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    max-width: 28rem;
+    height: 100vh;
+    background-color: theme('colors.cream.light / 0.75'); 
+    backdrop-filter: blur(9px);
+    color: theme('colors.black');
+    padding: 2rem;
+    transform: translateX(-100%); // Start off-screen to the left
+    transition: transform 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);
+    z-index: 100;
+    overflow-y: auto;
+    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1); // Add shadow for depth
+    
+    // Close button area (top-left corner where hamburger becomes X)
+    &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 80px; // Clickable area around the X button
+        height: 80px;
+        z-index: 105; // Below the toggle button but above content
+    }
+    
+    // Navigation inside panel
+    nav {
+        position: relative;
+        padding-top: 5rem; // More space to avoid overlapping with X button
+        
+        ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            
+            li {
+                opacity: 0; // Initial state for animation
+                transform: translateY(10px);
+                
+                a {
+                    display: block;
+                    padding: 1rem 0;
+                    color: theme('colors.black');
+                    text-decoration: none;
+                    font-size: 1.25rem;
+                    font-weight: 500;
+                    text-transform: uppercase;
+                    letter-spacing: 0.05em;
+                    transition: all 0.2s ease-in-out;
+                    position: relative;
+                    
+                    &:hover {
+                        color: theme('colors.brown.dark');
+                    }
+                }
+            }
+        }
+    }
+    
+    // When menu is open (translate-x-0 class is added)
+    &.translate-x-0 {
+        transform: translateX(0);
+
+        ul li {
+            opacity: 1;
+            transform: translateY(0);
+            transition: opacity 0.3s ease-in-out 0.2s, transform 0.3s ease-in-out 0.2s;
+        }
+    }
+}
+
+// Overlay background
+#secondary-menu-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 99;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+    pointer-events: none; // Prevent interaction when hidden
+    
+    &:not(.hidden) {
+        pointer-events: auto; // Allow interaction when visible
+    }
+    
+    &.hidden {
+        display: none;
+    }
+    
+    &.opacity-100 {
+        opacity: 1;
+    }
+}
+
+// Utility classes for menu animations
+.-translate-x-full {
+    transform: translateX(-100%) !important;
+}
+
+.translate-x-0 {
+    transform: translateX(0) !important;
+}
+
+// Additional animation utilities
+.opacity-0 {
+    opacity: 0 !important;
+}
+
+.opacity-100 {
+    opacity: 1 !important;
+}
+
+.translate-y-2 {
+    transform: translateY(0.5rem);
+}
+
+// Transition utilities for smooth animations
+.transition-all {
+    transition-property: all;
+}
+
+.duration-500 {
+    transition-duration: 500ms;
+}
+
+.ease-out {
+    transition-timing-function: cubic-bezier(0, 0, 0.2, 1);
+}
+
+// Body overflow control when menu is open
+body.overflow-hidden {
+    overflow: hidden;
+}
+
+// Submenu styles
+.sub-menu {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: white;
+    padding: 2rem;
+    transition: all 0.5s cubic-bezier(0.4, 0.0, 0.2, 1);
+    transform: translateX(100%);
+    opacity: 0;
+    
+    &.translate-x-0 {
+        transform: translateX(0);
+    }
+    
+    &.opacity-100 {
+        opacity: 1;
+    }
+    
+    // Back button in submenu
+    .submenu-back {
+        background: none;
+        border: none;
+        padding: 0.5rem 0;
+        margin-bottom: 1rem;
+        cursor: pointer;
+        transition: opacity 0.2s ease-in-out;
+        
+        &:hover {
+            opacity: 0.7;
         }
     }
 }
