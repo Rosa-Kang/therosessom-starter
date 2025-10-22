@@ -91,9 +91,9 @@
     "location": [
         [
             {
-                "param": "post_type",
+                "param": "page",
                 "operator": "==",
-                "value": "page"
+                "value": "6"
             }
         ]
     ],
@@ -105,5 +105,7 @@
     "hide_on_screen": "",
     "active": true,
     "description": "A section with a title, a list of links (repeater), and an image.",
-    "show_in_rest": 0
+    "show_in_rest": 0,
+    "display_title": "",
+    "modified": 1761096022
 }

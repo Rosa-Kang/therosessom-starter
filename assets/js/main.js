@@ -6,10 +6,14 @@ import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import 'swiper/css/effect-fade';
 
+// Import AOS
+import AOS from 'aos';
+
 /**
  * Initialize when DOM is ready
  */
 document.addEventListener('DOMContentLoaded', () => {
+  AOS.init();
   initHeroSwiper();
   initHeroVideo();
   initScrollHeader();

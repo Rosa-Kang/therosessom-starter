@@ -4,6 +4,7 @@
 @use 'tailwindcss/utilities';
 
 // Import Custom Styles
+@use 'aos/dist/aos.css';
 @use 'variables';
 @use 'font';
 @use 'navigation';

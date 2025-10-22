@@ -26,9 +26,9 @@ export default {
           light : '#EAE8DC'
         },
         brown: {
-          light: '#8B7355',
-          DEFAULT: '#6B5444',
-          dark: '#4A3C2F'
+          light: '#2F2921',
+          DEFAULT: '#282420',
+          dark: '#1D1812'
         },
         pink: {
           light: '#F4C7C7',

@@ -1,0 +1,35 @@
+@use 'variables' as *;
+/**
+* Button Style Arrow
+**/
+.btn-primary {
+    color: theme('colors.cream.light');
+    transition: $transition-base;
+    > span {
+        position: relative;
+        
+        &::after {
+            content: '';
+            display: inline-block;
+            width: 24px; 
+            height: 24px;
+            background-image: url('@images/arrow-forward.svg');
+            // transform: rotate(45deg);
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+            margin-left: 3px;
+            transition: $transition-base;
+            vertical-align: middle;
+        }
+    }
+    
+    &:hover {
+        color: theme('colors.cream.light');
+        transition: $transition-base;
+
+        > span::after {
+            transform: rotate(45deg) translateX(5px);
+        }
+    }
+}
