@@ -1,0 +1,109 @@
+{
+    "key": "group_callout_text_section",
+    "title": "Callout Text Section",
+    "fields": [
+        {
+            "key": "field_callout_text_title",
+            "label": "Title",
+            "name": "callout_text_title",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "The main title for the callout text section (e.g., Discover our signature callout texts)",
+            "required": 1,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_callout_text_content",
+            "label": "Content\/Description",
+            "name": "callout_text_content",
+            "aria-label": "",
+            "type": "textarea",
+            "instructions": "The main body text describing the callout texts.",
+            "required": 1,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "rows": 6,
+            "default_value": "",
+            "new_lines": "",
+            "maxlength": "",
+            "placeholder": ""
+        },
+        {
+            "key": "field_callout_text_button",
+            "label": "Button",
+            "name": "callout_text_button",
+            "aria-label": "",
+            "type": "link",
+            "instructions": "URL for the call-to-action button.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "array",
+            "allow_in_bindings": 0
+        },
+        {
+            "key": "field_callout_text_image",
+            "label": "Image",
+            "name": "callout_text_image",
+            "aria-label": "",
+            "type": "image",
+            "instructions": "The large image displayed on the right side. Recommended size: 1000x1200px or larger.",
+            "required": 1,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "array",
+            "library": "all",
+            "min_width": "",
+            "min_height": "",
+            "min_size": "",
+            "max_width": "",
+            "max_height": "",
+            "max_size": "",
+            "mime_types": "",
+            "allow_in_bindings": 1,
+            "preview_size": "medium"
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "page",
+                "operator": "==",
+                "value": "10"
+            }
+        ]
+    ],
+    "menu_order": 6,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "Callout Text section configuration with split layout.",
+    "show_in_rest": 0,
+    "display_title": "",
+    "modified": 1761330229
+}

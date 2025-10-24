@@ -15,6 +15,7 @@ import AOS from 'aos';
 document.addEventListener('DOMContentLoaded', () => {
   AOS.init();
   initHeroSwiper();
+  initProjectSwiper();
   initHeroVideo();
   initScrollHeader();
   initMobileMenu();
@@ -46,6 +47,43 @@ function initHeroSwiper() {
       el: '.swiper-pagination',
       clickable: true,
       dynamicBullets: true
+    }
+  });
+}
+
+/**
+ * Initialize Project Swiper (Carousel)
+ */
+function initProjectSwiper() {
+  const projectSwiper = document.querySelector('.project-swiper');
+  if (!projectSwiper) return;
+  
+  new Swiper('.project-swiper', {
+    modules: [Navigation, Autoplay], 
+    slidesPerView: 1.2, 
+    spaceBetween: 20, 
+    loop: true, 
+    
+    autoplay: {
+      delay: 2000,
+      disableOnInteraction: false,
+      pauseOnMouseEnter: true
+    },
+    
+    navigation: {
+      nextEl: '.project-swiper-next', 
+      prevEl: '.project-swiper-prev', 
+    },
+    
+    breakpoints: {
+      768: {
+        slidesPerView: 3.2,
+        spaceBetween: 30
+      },
+      1024: {
+        slidesPerView: 4, 
+        spaceBetween: 30
+      }
     }
   });
 }

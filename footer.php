@@ -7,11 +7,14 @@
  */
     $footer_copyright = get_field('footer_copyright', 'option');
 	$footer_script = get_field('footer_script', 'option');
+
+	$bg_class = ( is_front_page() || is_home() ) ? 'bg-primary-light' : 'bg-brown' 
+	
 ?>
 
 </main><!-- #content -->
 
-		<footer id="colophon" role="contentinfo" class="relative z-20 bg-primary-light pt-16">
+		<footer id="colophon" role="contentinfo" class="relative z-20 <?php echo $bg_class;?> pt-16">
 
 			<div class="ig-feed py-16">
 				<?php get_template_part('template-parts/ig/ig-feed') ;?>

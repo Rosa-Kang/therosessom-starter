@@ -1,0 +1,113 @@
+{
+    "key": "group_trio_cards_section",
+    "title": "Trio Cards Section",
+    "fields": [
+        {
+            "key": "field_trio_cards_repeater",
+            "label": "Trio Cards",
+            "name": "trio_cards",
+            "aria-label": "",
+            "type": "repeater",
+            "instructions": "Add Trio Cards",
+            "required": 1,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "layout": "block",
+            "min": 3,
+            "max": 3,
+            "collapsed": "field_trio_cards_link",
+            "button_label": "Add Trio Card",
+            "rows_per_page": 20,
+            "sub_fields": [
+                {
+                    "key": "field_trio_cards_image",
+                    "label": "Image",
+                    "name": "image",
+                    "aria-label": "",
+                    "type": "image",
+                    "instructions": "Image for the Card",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "30",
+                        "class": "",
+                        "id": ""
+                    },
+                    "return_format": "array",
+                    "library": "all",
+                    "min_width": "",
+                    "min_height": "",
+                    "min_size": "",
+                    "max_width": "",
+                    "max_height": "",
+                    "max_size": "",
+                    "mime_types": "jpg,jpeg,png,webp",
+                    "preview_size": "thumbnail",
+                    "parent_repeater": "field_trio_cards_repeater"
+                },
+                {
+                    "key": "field_trio_cards_description",
+                    "label": "Description",
+                    "name": "description",
+                    "aria-label": "",
+                    "type": "textarea",
+                    "instructions": "Text below card",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "70",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "new_lines": "wpautop",
+                    "rows": 4,
+                    "parent_repeater": "field_trio_cards_repeater"
+                },
+                {
+                    "key": "field_trio_cards_link",
+                    "label": "Link",
+                    "name": "link",
+                    "aria-label": "",
+                    "type": "link",
+                    "instructions": "Add a Button",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "return_format": "array",
+                    "parent_repeater": "field_trio_cards_repeater"
+                }
+            ]
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "page",
+                "operator": "==",
+                "value": "10"
+            }
+        ]
+    ],
+    "menu_order": 4,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "left",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "A section with 3 cards in a specific staggered layout (1 left, 2 right).",
+    "show_in_rest": 0,
+    "display_title": "",
+    "modified": 1761267346
+}
