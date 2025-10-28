@@ -8,7 +8,8 @@
     $footer_copyright = get_field('footer_copyright', 'option');
 	$footer_script = get_field('footer_script', 'option');
 
-	$bg_class = ( is_front_page() || is_home() ) ? 'bg-primary-light' : 'bg-brown' 
+	$bg_class = ( is_front_page() || is_home() ) ? 'bg-primary-light' : 'bg-brown';
+	$text_color_class = ( is_front_page() || is_home() ) ? 'text-neutral-500 ' : 'text-cream-light';
 	
 ?>
 
@@ -23,12 +24,12 @@
 			<div class="container lg:max-w-[1024px] mx-auto px-4 pb-8">
 				<div class="flex justify-center items-center py-6 mx-auto px-4 sm:px-6 lg:px-8">
 					<div id="footer-menu-container" class="space-y-2 font-sans w-[100%]">
-						<?php wp_nav_menu(['menu' => 'Footer Menu', 'menu_id' => 'footer-menu', 'menu_class' => 'text-[10px] flex items-center justify-between uppercase font-medium']); ?>
+						<?php wp_nav_menu(['menu' => 'Footer Menu', 'menu_id' => 'footer-menu', 'menu_class' => 'text-[10px] flex items-center justify-between uppercase font-medium ' . $text_color_class]); ?>
 					</div>
 				</div>
 				<?php if( $footer_copyright ): ?>
 					<div>
-						<div class="footer-bar text-neutral-500 text-xs text-center">
+						<div class="footer-bar text-xs text-center <?php echo($footer_text_color); ?>">
 							<?php { echo $footer_copyright; } ?>
 						</div>
 					</div>

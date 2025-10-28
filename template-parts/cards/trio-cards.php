@@ -93,7 +93,11 @@ if (!function_exists('render_trio_card')) {
         
         <div class="grid grid-cols-1 md:grid-cols-2 gap-16 md:gap-16 lg:gap-24 items-center">
             
-            <div class="flex flex-col justify-start">
+            <div class="flex flex-col justify-start" 
+                 data-aos="fade-right" 
+                 data-aos-duration="1200" 
+                 data-aos-easing="ease-in-out" 
+                 data-aos-anchor="#trio-cards">
                 <?php 
                 render_trio_card(
                     $card_left, 
@@ -108,7 +112,11 @@ if (!function_exists('render_trio_card')) {
 
             <div class="flex flex-col gap-16 md:gap-16 lg:gap-24">
                 
-                <div class="flex justify-start">
+                <div class="flex justify-start" 
+                     data-aos="fade-down-left" 
+                     data-aos-duration="1200" 
+                     data-aos-easing="ease-in-out" 
+                     data-aos-anchor="#trio-cards">
                     <?php 
                     render_trio_card(
                         $card_right_top, 
@@ -121,7 +129,11 @@ if (!function_exists('render_trio_card')) {
                     ?>
                 </div>
                 
-                <div class="flex justify-start">
+                <div class="flex justify-start" 
+                     data-aos="fade-up-left" 
+                     data-aos-duration="1200" 
+                     data-aos-easing="ease-in-out" 
+                     data-aos-anchor="#trio-cards">
                     <?php 
                     render_trio_card(
                         $card_right_bottom, 

@@ -8,6 +8,7 @@
 
 $blurb = get_field('ig_blurb', 'option');
 $short_code = get_field('ig_shortcode', 'option');
+$text_color_class = ( is_front_page() || is_home() ) ? 'text-cream-light' : 'text-neutral-500 ';
 ?>
 
 
@@ -26,7 +27,7 @@ $short_code = get_field('ig_shortcode', 'option');
         <h3 class="inline-block">
          <?php if ($blurb): ?>
            <span 
-           class="text-xs leading-[16.8px] font-normal text-black font-sans"><?= str_replace('. ', '.<br>', $blurb); ?></span>
+           class="text-xs leading-[16.8px] font-normal <?php echo $text_color_class; ?> font-sans"><?= str_replace('. ', '.<br>', $blurb); ?></span>
          <?php endif; ?>
         </h3>
       </div>

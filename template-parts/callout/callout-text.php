@@ -60,14 +60,14 @@ if($button) {
 
         <?php if ($image) : ?>
             <div 
-                class="image-col w-full md:w-1/2 relative md:h-[718px]"
+                class="image-col w-full md:w-1/2 relative md:min-h-[718px]"
             >
                 <img
                     src="<?php echo esc_url($image['sizes']['large'] ?? $image['url']); ?>"
                     srcset="<?php echo esc_attr(wp_get_attachment_image_srcset($image['id'], 'large')); ?>"
                     sizes="100vw, 50vw"
                     alt="<?php echo esc_attr($image['alt'] ?: $title); ?>"
-                    class="inset-0 w-full object-cover md:h-[718px]"
+                    class="inset-0 w-full object-cover aspect-[1/1.12]"
                     loading="lazy"
                 >
 

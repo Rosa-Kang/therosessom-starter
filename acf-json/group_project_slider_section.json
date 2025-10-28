@@ -1,112 +1,77 @@
 {
     "key": "group_project_slider_section",
-    "title": "Project Slider Section",
+    "title": "Project Slider Sections",
     "fields": [
         {
-            "key": "field_project_slider_title",
-            "label": "Section Title",
-            "name": "project_slider_title",
-            "aria-label": "",
-            "type": "text",
-            "instructions": "The main title displayed above the project slider.",
-            "required": 1,
-            "conditional_logic": false,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "default_value": "OUR PROJECTS",
-            "maxlength": "",
-            "placeholder": "",
-            "prepend": "",
-            "append": ""
-        },
-        {
-            "key": "field_project_items",
-            "label": "Project Items",
-            "name": "project_items",
+            "key": "field_project_slider_sections",
+            "label": "Project Slider Sections",
+            "name": "project_slider_sections",
             "aria-label": "",
             "type": "repeater",
-            "instructions": "Add each project slide item here.",
-            "required": 1,
+            "instructions": "Use this repeater to add one or more Project Slider Sections to the page.",
+            "required": 0,
             "conditional_logic": false,
             "wrapper": {
                 "width": "",
                 "class": "",
                 "id": ""
             },
-            "layout": "block",
+            "layout": "row",
             "min": 0,
             "max": 0,
             "rows_per_page": 20,
-            "button_label": "Add Row",
-            "collapsed": "",
+            "button_label": "Add New Section",
+            "collapsed": "field_project_slider_title",
             "sub_fields": [
                 {
-                    "key": "field_project_image",
-                    "label": "Project Image",
-                    "name": "project_image",
-                    "aria-label": "",
-                    "type": "image",
-                    "instructions": "The main image for the project slide.",
-                    "required": 1,
-                    "conditional_logic": false,
-                    "wrapper": {
-                        "width": "50",
-                        "class": "",
-                        "id": ""
-                    },
-                    "return_format": "array",
-                    "preview_size": "medium",
-                    "library": "all",
-                    "min_width": 0,
-                    "min_height": 0,
-                    "min_size": 0,
-                    "max_width": 0,
-                    "max_height": 0,
-                    "max_size": 0,
-                    "mime_types": "",
-                    "parent_repeater": "field_project_items"
-                },
-                {
-                    "key": "field_project_title",
-                    "label": "Project Title",
-                    "name": "project_title",
+                    "key": "field_project_slider_title",
+                    "label": "Section Title",
+                    "name": "project_slider_title",
                     "aria-label": "",
                     "type": "text",
-                    "instructions": "The title and category (e.g., CERAMICA - MARKETING)",
+                    "instructions": "The main title displayed above the project slider.",
                     "required": 1,
-                    "conditional_logic": false,
-                    "wrapper": {
-                        "width": "50",
-                        "class": "",
-                        "id": ""
-                    },
-                    "default_value": "",
-                    "maxlength": "",
-                    "placeholder": "",
-                    "prepend": "",
-                    "append": "",
-                    "parent_repeater": "field_project_items"
-                },
-                {
-                    "key": "field_project_link",
-                    "label": "Project Link URL",
-                    "name": "project_link",
-                    "aria-label": "",
-                    "type": "url",
-                    "instructions": "The URL to view the full project.",
-                    "required": 0,
                     "conditional_logic": false,
                     "wrapper": {
                         "width": "",
                         "class": "",
                         "id": ""
                     },
-                    "default_value": "",
+                    "default_value": "OUR PROJECTS",
+                    "maxlength": "",
                     "placeholder": "",
-                    "parent_repeater": "field_project_items"
+                    "prepend": "",
+                    "append": ""
+                },
+                {
+                    "key": "field_project_items",
+                    "label": "Project Items",
+                    "name": "project_items",
+                    "aria-label": "",
+                    "type": "post_object",
+                    "instructions": "Select the portfolio projects to display in the slider. You can filter by category.",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "post_type": [
+                        "portfolio"
+                    ],
+                    "post_status": "",
+                    "taxonomy": [
+                        "portfolio_category" 
+                    ],
+                    "return_format": "object",
+                    "multiple": 1,
+                    "allow_null": 0,
+                    "allow_in_bindings": 0,
+                    "bidirectional": 0,
+                    "ui": 1,
+                    "bidirectional_target": [],
+                    "parent_repeater": "field_project_slider_sections"
                 }
             ]
         }
@@ -130,5 +95,5 @@
     "description": "Project slider section configuration.",
     "show_in_rest": 0,
     "display_title": "",
-    "modified": 1761328247
+    "modified": 1761422719
 }

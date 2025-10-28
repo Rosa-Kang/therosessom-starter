@@ -68,10 +68,10 @@
     <nav id="secondary-navigation" class="relative pt-12 pl-6">
         <?php
         wp_nav_menu( [
-            'theme_location' => 'secondary', // This uses the menu you created
+            'theme_location' => 'secondary', 
             'menu_id'        => 'secondary-menu',
             'container'      => false,
-            'menu_class'     => 'space-y-4 text-2xl uppercase', // Matches video style
+            'menu_class'     => 'space-y-4 text-2xl uppercase', 
         ] );
         ?>
     </nav>
