@@ -6,12 +6,8 @@ import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import 'swiper/css/effect-fade';
 
-// Import AOS
 import AOS from 'aos';
 
-/**
- * Initialize when DOM is ready
- */
 document.addEventListener('DOMContentLoaded', () => {
   AOS.init();
   initHeroSwiper();
@@ -21,9 +17,6 @@ document.addEventListener('DOMContentLoaded', () => {
   initMobileMenu();
 });
 
-/**
- * Initialize Hero Image Swiper
- */
 function initHeroSwiper() {
   const heroSwiper = document.querySelector('.hero-swiper');
   if (!heroSwiper) return;
@@ -51,9 +44,6 @@ function initHeroSwiper() {
   });
 }
 
-/**
- * Initialize Project Swiper (Carousel)
- */
 function initProjectSwiper() {
   const projectSwiper = document.querySelector('.project-swiper');
   if (!projectSwiper) return;
@@ -88,9 +78,6 @@ function initProjectSwiper() {
   });
 }
 
-/**
- * Initialize Hero Video Background
- */
 function initHeroVideo() {
   const videoElement = document.querySelector('.hero-video-bg video');
   if (!videoElement) return;
@@ -108,9 +95,6 @@ function initHeroVideo() {
   });
 }
 
-/**
- * Initialize Scroll Header
- */
 function initScrollHeader() {
   const header = document.getElementById('masthead');
   if (!header) return;
@@ -124,35 +108,142 @@ function initScrollHeader() {
   });
 }
 
-/**
- * Initialize Mobile Menu
- */
 function initMobileMenu() {
   const toggleBtn = document.getElementById('secondary-menu-toggle');
   const panel = document.getElementById('secondary-menu-panel');
   const overlay = document.getElementById('secondary-menu-overlay');
-
+  
+  const backBtn = document.getElementById('submenu-back-btn');
+  const closeBtn = document.getElementById('menu-close-btn');
+  const backLabel = document.getElementById('back-button-label');
+  const menuContainer = document.getElementById('menu-levels-container');
+  
   if (!toggleBtn || !panel) return;
 
-  // Open menu
+  // Function to dynamically add toggle buttons to menu items with children
+  function addSubmenuToggles() {
+    const menu = document.getElementById('secondary-menu');
+    if (!menu) return;
+
+    const itemsWithChildren = menu.querySelectorAll('.menu-item-has-children');
+
+    itemsWithChildren.forEach(item => {
+      if (item.querySelector('.submenu-toggle')) {
+        return;
+      }
+      const toggle = document.createElement('button');
+      toggle.className = 'submenu-toggle';
+      toggle.setAttribute('aria-label', 'Open submenu');
+      toggle.innerHTML = '<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 5l7 7-7 7"></path></svg>';
+      item.querySelector('a').after(toggle);
+    });
+  }
+
+  let currentDepth = 0;
+  const historyStack = [];
+
   function openMenu() {
     toggleBtn.classList.add('open');
     panel.classList.remove('-translate-x-full');
     panel.classList.add('translate-x-0');
     if (overlay) overlay.classList.remove('hidden');
     document.body.style.overflow = 'hidden';
+    
+    resetMenu();
   }
 
-  // Close menu
   function closeMenu() {
     toggleBtn.classList.remove('open');
     panel.classList.remove('translate-x-0');
     panel.classList.add('-translate-x-full');
     if (overlay) overlay.classList.add('hidden');
     document.body.style.overflow = '';
+    
+    setTimeout(resetMenu, 300); 
+  }
+  
+  function resetMenu() {
+    currentDepth = 0;
+    historyStack.length = 0;
+    
+    const menuLevels = menuContainer.querySelectorAll('[class^="menu-level-"]');
+    if (menuLevels.length > 1) {
+        for (let i = 1; i < menuLevels.length; i++) {
+            menuLevels[i].remove();
+        }
+    }
+    
+    const level0 = menuContainer.querySelector('.menu-level-0');
+    if (level0) {
+        level0.style.left = '0%';
+    }
+
+    updateMenuDisplay();
+  }
+  
+  function updateMenuDisplay() {
+    if (currentDepth > 0) {
+      backBtn.classList.remove('hidden');
+      const parentItem = historyStack[historyStack.length - 1];
+      backLabel.textContent = parentItem ? parentItem.querySelector('a').textContent : 'BACK';
+    } else {
+      backBtn.classList.add('hidden');
+    }
+    
+    menuContainer.style.transform = `translateX(-${currentDepth * 100}%)`;
+  }
+  
+  function handleSubmenuToggle(e) {
+    const toggleButton = e.target.closest('.submenu-toggle');
+    if (!toggleButton) return;
+    
+    e.preventDefault();
+    e.stopPropagation();
+    
+    const parentListItem = toggleButton.closest('li.menu-item-has-children');
+    const submenu = parentListItem.querySelector('.sub-menu');
+    
+    if (!submenu) return;
+    
+    currentDepth++;
+    historyStack.push(parentListItem);
+    
+    const newMenuLevel = document.createElement('nav');
+    newMenuLevel.classList.add(`menu-level-${currentDepth}`, 'absolute', 'top-0', 'left-full', 'w-full', 'h-full', 'p-8', 'pt-0', 'transition-transform', 'duration-300', 'ease-in-out');
+    
+    const submenuClone = submenu.cloneNode(true); 
+    newMenuLevel.appendChild(submenuClone);
+    
+    menuContainer.appendChild(newMenuLevel);
+
+    setTimeout(() => {
+        updateMenuDisplay();
+    }, 10);
+  }
+  
+  function handleBackButtonClick() {
+    if (currentDepth <= 0) return;
+    
+    const oldDepth = currentDepth;
+    currentDepth--;
+    
+    historyStack.pop();
+    
+    updateMenuDisplay();
+    
+    const menuLevelToRemove = document.querySelector(`.menu-level-${oldDepth}`);
+    
+    if (menuLevelToRemove) {
+      menuLevelToRemove.style.left = '100%'; 
+      setTimeout(() => {
+        menuLevelToRemove.remove();
+      }, 300);
+    }
   }
 
-  // Toggle on button click
+  // Initial setup
+  addSubmenuToggles();
+
   toggleBtn.addEventListener('click', () => {
     if (toggleBtn.classList.contains('open')) {
       closeMenu();
@@ -160,16 +251,22 @@ function initMobileMenu() {
       openMenu();
     }
   });
-
-  // Close on overlay click
+  
   if (overlay) {
     overlay.addEventListener('click', closeMenu);
   }
+  
+  if (closeBtn) {
+      closeBtn.addEventListener('click', closeMenu);
+  }
 
-  // Close on ESC key
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape' && toggleBtn.classList.contains('open')) {
       closeMenu();
     }
   });
+  
+  panel.addEventListener('click', handleSubmenuToggle);
+  
+  backBtn.addEventListener('click', handleBackButtonClick);
 }
