@@ -118,6 +118,13 @@
                 "operator": "==",
                 "value": "portfolio-page.php"
             }
+        ],
+        [
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "portfolio"
+            }
         ]
     ],
     "menu_order": 6,
@@ -130,5 +137,5 @@
     "description": "Callout Text section configuration with split layout.",
     "show_in_rest": 0,
     "display_title": "",
-    "modified": 1762203966
+    "modified": 1762206407
 }
