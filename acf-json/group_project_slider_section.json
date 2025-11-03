@@ -6,37 +6,16 @@
             "key": "field_6909194f4a839",
             "label": "",
             "name": "",
-            "aria-label": "",
             "type": "tab",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "placement": "left",
-            "endpoint": 0,
-            "selected": 0
+            "placement": "left"
         },
         {
             "key": "field_project_slider_sections",
             "label": "Project Slider Sections",
             "name": "project_slider_sections",
-            "aria-label": "",
             "type": "repeater",
             "instructions": "Use this repeater to add one or more Project Slider Sections to the page.",
-            "required": 0,
-            "conditional_logic": false,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
             "layout": "row",
-            "min": 0,
-            "max": 0,
             "rows_per_page": 20,
             "button_label": "Add New Section",
             "collapsed": "field_project_slider_title",
@@ -45,77 +24,92 @@
                     "key": "field_project_slider_title",
                     "label": "Section Title",
                     "name": "project_slider_title",
-                    "aria-label": "",
                     "type": "text",
                     "instructions": "The main title displayed above the project slider.",
                     "required": 1,
-                    "conditional_logic": false,
-                    "wrapper": {
-                        "width": "",
-                        "class": "",
-                        "id": ""
-                    },
-                    "default_value": "OUR PROJECTS",
-                    "maxlength": "",
-                    "placeholder": "",
-                    "prepend": "",
-                    "append": "",
-                    "parent_repeater": "field_project_slider_sections"
+                    "default_value": "OUR PROJECTS"
                 },
                 {
                     "key": "field_project_items",
                     "label": "Project Items",
                     "name": "project_items",
-                    "aria-label": "",
-                    "type": "post_object",
-                    "instructions": "Select the portfolio projects to display in the slider. You can filter by category.",
-                    "required": 0,
-                    "conditional_logic": 0,
-                    "wrapper": {
-                        "width": "",
-                        "class": "",
-                        "id": ""
-                    },
-                    "post_type": [
-                        "portfolio"
-                    ],
-                    "post_status": "",
-                    "taxonomy": [
-                        "portfolio_category"
-                    ],
-                    "return_format": "object",
-                    "multiple": 1,
-                    "allow_null": 0,
-                    "allow_in_bindings": 0,
-                    "bidirectional": 0,
-                    "ui": 1,
-                    "bidirectional_target": [],
-                    "parent_repeater": "field_project_slider_sections"
+                    "type": "repeater",
+                    "layout": "row",
+                    "button_label": "Add New Item",
+                    "sub_fields": [
+                        {
+                            "key": "field_project_item_type",
+                            "label": "Item Type",
+                            "name": "project_item_type",
+                            "type": "radio",
+                            "choices": {
+                                "post": "Select from Portfolio",
+                                "custom": "Custom Input"
+                            },
+                            "default_value": "post",
+                            "layout": "horizontal"
+                        },
+                        {
+                            "key": "field_post_object",
+                            "label": "Project Post",
+                            "name": "project_post",
+                            "type": "post_object",
+                            "post_type": ["portfolio"],
+                            "multiple": 1,
+                            "ui": 1,
+                            "conditional_logic": [
+                                [
+                                    {"field": "field_project_item_type", "operator": "==", "value": "post"}
+                                ]
+                            ]
+                        },
+                        {
+                            "key": "field_custom_items",
+                            "label": "Custom Items",
+                            "name": "custom_items",
+                            "type": "repeater",
+                            "layout": "row",
+                            "button_label": "Add Custom Item",
+                            "conditional_logic": [
+                                [
+                                    {"field": "field_project_item_type", "operator": "==", "value": "custom"}
+                                ]
+                            ],
+                            "sub_fields": [
+                                {
+                                    "key": "field_custom_image",
+                                    "label": "Custom Image",
+                                    "name": "custom_image",
+                                    "type": "image"
+                                },
+                                {
+                                    "key": "field_custom_title",
+                                    "label": "Custom Title",
+                                    "name": "custom_title",
+                                    "type": "text"
+                                },
+                                {
+                                    "key": "field_custom_link",
+                                    "label": "Custom Link",
+                                    "name": "custom_link",
+                                    "type": "url"
+                                }
+                            ]
+                        }
+                    ]
                 }
             ]
         }
     ],
     "location": [
         [
-            {
-                "param": "page",
-                "operator": "==",
-                "value": "10"
-            }
+            {"param": "page", "operator": "==", "value": "10"}
         ],
         [
-            {
-                "param": "page",
-                "operator": "==",
-                "value": "16"
-            }
+            {"param": "page", "operator": "==", "value": "16"}
         ],
         [
-            {
-                "param": "post_type",
-                "operator": "==",
-                "value": "portfolio"
-            }
+            {"param": "post_type", "operator": "==", "value": "portfolio"}
         ]
     ],
     "menu_order": 5,
@@ -123,10 +117,6 @@
     "style": "default",
     "label_placement": "top",
     "instruction_placement": "label",
-    "hide_on_screen": "",
     "active": true,
-    "description": "Project slider section configuration.",
-    "show_in_rest": 0,
-    "display_title": "",
-    "modified": 1762206394
+    "description": "Project slider section configuration."
 }
