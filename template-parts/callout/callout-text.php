@@ -12,24 +12,29 @@ if (!function_exists('get_field')) {
 }
 
 // Get ACF fields
-$title = get_field('callout_text_title');
+$title   = get_field('callout_text_title');
 $content = get_field('callout_text_content');
-$button = get_field('callout_text_button');
-$image = get_field('callout_text_image');
+$button  = get_field('callout_text_button_link');
+$image   = get_field('callout_text_image');
+
+// Initialize safe variables
+$button_text = '';
+$button_link = '';
 
 // Return if no essential content
 if (!$title && !$content && !$image) {
     return;
 }
 
-if($button) {
+// Button values (if exists)
+if ($button && isset($button['title'], $button['url'])) {
     $button_text = esc_html($button['title']);
     $button_link = esc_url($button['url']);
 }
 ?>
 
 <section id="service-split" class="service-split-section text-cream-light bg-brown-dark overflow-hidden">
-    <div class="flex flex-col md:flex-row">
+    <div class="flex flex-col md:flex-row" data-aos="fade-in" data-aos-duration="300">
         <div 
             class="content-col w-full md:w-1/2 p-12 lg:p-24 flex flex-col justify-center"
         >

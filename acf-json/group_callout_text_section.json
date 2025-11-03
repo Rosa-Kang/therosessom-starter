@@ -3,6 +3,24 @@
     "title": "Callout Text Section",
     "fields": [
         {
+            "key": "field_6909192670049",
+            "label": "",
+            "name": "",
+            "aria-label": "",
+            "type": "tab",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "placement": "left",
+            "endpoint": 0,
+            "selected": 0
+        },
+        {
             "key": "field_callout_text_title",
             "label": "Title",
             "name": "callout_text_title",
@@ -43,9 +61,9 @@
             "placeholder": ""
         },
         {
-            "key": "field_callout_text_button",
-            "label": "Button",
-            "name": "callout_text_button",
+            "key": "field_callout_text_button_link",
+            "label": "Button Link URL",
+            "name": "callout_text_button_link",
             "aria-label": "",
             "type": "link",
             "instructions": "URL for the call-to-action button.",
@@ -89,9 +107,16 @@
     "location": [
         [
             {
-                "param": "page",
+                "param": "page_template",
                 "operator": "==",
-                "value": "10"
+                "value": "studio-page.php"
+            }
+        ],
+        [
+            {
+                "param": "page_template",
+                "operator": "==",
+                "value": "portfolio-page.php"
             }
         ]
     ],
@@ -105,5 +130,5 @@
     "description": "Callout Text section configuration with split layout.",
     "show_in_rest": 0,
     "display_title": "",
-    "modified": 1761330229
+    "modified": 1762203966
 }

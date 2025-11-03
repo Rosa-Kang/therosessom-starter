@@ -3,6 +3,24 @@
     "title": "Project Slider Sections",
     "fields": [
         {
+            "key": "field_6909194f4a839",
+            "label": "",
+            "name": "",
+            "aria-label": "",
+            "type": "tab",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "placement": "left",
+            "endpoint": 0,
+            "selected": 0
+        },
+        {
             "key": "field_project_slider_sections",
             "label": "Project Slider Sections",
             "name": "project_slider_sections",
@@ -41,7 +59,8 @@
                     "maxlength": "",
                     "placeholder": "",
                     "prepend": "",
-                    "append": ""
+                    "append": "",
+                    "parent_repeater": "field_project_slider_sections"
                 },
                 {
                     "key": "field_project_items",
@@ -62,7 +81,7 @@
                     ],
                     "post_status": "",
                     "taxonomy": [
-                        "portfolio_category" 
+                        "portfolio_category"
                     ],
                     "return_format": "object",
                     "multiple": 1,
@@ -83,6 +102,13 @@
                 "operator": "==",
                 "value": "10"
             }
+        ],
+        [
+            {
+                "param": "page",
+                "operator": "==",
+                "value": "16"
+            }
         ]
     ],
     "menu_order": 5,
@@ -95,5 +121,5 @@
     "description": "Project slider section configuration.",
     "show_in_rest": 0,
     "display_title": "",
-    "modified": 1761422719
+    "modified": 1762203994
 }

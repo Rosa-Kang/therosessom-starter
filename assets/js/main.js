@@ -9,14 +9,18 @@ import 'swiper/css/effect-fade';
 import AOS from 'aos';
 
 document.addEventListener('DOMContentLoaded', () => {
-  AOS.init();
+    AOS.init({
+  once: true,
+  mirror: false,
+  disableMutationObserver: true,
+});
+
   initHeroSwiper();
   initProjectSwiper();
   initHeroVideo();
   initScrollHeader();
   initMobileMenu();
 });
-
 function initHeroSwiper() {
   const heroSwiper = document.querySelector('.hero-swiper');
   if (!heroSwiper) return;
