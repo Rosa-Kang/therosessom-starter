@@ -3,13 +3,31 @@
     "title": "Hero Section",
     "fields": [
         {
+            "key": "field_69095c4be32a4",
+            "label": "",
+            "name": "",
+            "aria-label": "",
+            "type": "tab",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "placement": "left",
+            "endpoint": 0,
+            "selected": 0
+        },
+        {
             "key": "field_hero_type",
             "label": "Hero Type",
             "name": "hero_type",
             "aria-label": "",
             "type": "button_group",
             "instructions": "Choose hero background type",
-            "required": 1,
+            "required": 0,
             "conditional_logic": 0,
             "wrapper": {
                 "width": "",
@@ -32,7 +50,7 @@
             "aria-label": "",
             "type": "gallery",
             "instructions": "Add one or more images. Single image will display as static background, multiple images will create a slider. Recommended size: 1920x1080px or larger.",
-            "required": 1,
+            "required": 0,
             "conditional_logic": [
                 [
                     {
@@ -49,7 +67,6 @@
             },
             "return_format": "array",
             "library": "all",
-            "min": 1,
             "max": 0,
             "min_width": "",
             "min_height": "",
@@ -68,7 +85,7 @@
             "aria-label": "",
             "type": "file",
             "instructions": "Upload video file. MP4 format recommended. Keep file size under 50MB for better performance.",
-            "required": 1,
+            "required": 0,
             "conditional_logic": [
                 [
                     {
@@ -137,6 +154,13 @@
                 "operator": "==",
                 "value": "studio-page.php"
             }
+        ],
+        [
+            {
+                "param": "page_template",
+                "operator": "==",
+                "value": "packages-page.php"
+            }
         ]
     ],
     "menu_order": 0,
@@ -149,5 +173,5 @@
     "description": "Hero section configuration for the front page",
     "show_in_rest": 0,
     "display_title": "",
-    "modified": 1762201945
+    "modified": 1762221155
 }

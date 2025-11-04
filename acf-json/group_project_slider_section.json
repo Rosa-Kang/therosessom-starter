@@ -6,16 +6,37 @@
             "key": "field_6909194f4a839",
             "label": "",
             "name": "",
+            "aria-label": "",
             "type": "tab",
-            "placement": "left"
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "placement": "left",
+            "endpoint": 0,
+            "selected": 0
         },
         {
             "key": "field_project_slider_sections",
             "label": "Project Slider Sections",
             "name": "project_slider_sections",
+            "aria-label": "",
             "type": "repeater",
             "instructions": "Use this repeater to add one or more Project Slider Sections to the page.",
+            "required": 0,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
             "layout": "row",
+            "min": 0,
+            "max": 0,
             "rows_per_page": 20,
             "button_label": "Add New Section",
             "collapsed": "field_project_slider_title",
@@ -24,77 +45,186 @@
                     "key": "field_project_slider_title",
                     "label": "Section Title",
                     "name": "project_slider_title",
+                    "aria-label": "",
                     "type": "text",
                     "instructions": "The main title displayed above the project slider.",
                     "required": 1,
-                    "default_value": "OUR PROJECTS"
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "OUR PROJECTS",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "parent_repeater": "field_project_slider_sections"
                 },
                 {
-                    "key": "field_project_items",
-                    "label": "Project Items",
-                    "name": "project_items",
+                    "key": "field_project_slider_items",
+                    "label": "Project Slider Items",
+                    "name": "project_slider_items",
+                    "aria-label": "",
                     "type": "repeater",
-                    "layout": "row",
-                    "button_label": "Add New Item",
+                    "instructions": "Add individual slides. Choose between selecting a Portfolio post or entering custom details.",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "layout": "block",
+                    "min": 0,
+                    "max": 0,
+                    "rows_per_page": 20,
+                    "button_label": "Add Slide Item",
+                    "collapsed": "field_item_type",
                     "sub_fields": [
                         {
-                            "key": "field_project_item_type",
+                            "key": "field_item_type",
                             "label": "Item Type",
-                            "name": "project_item_type",
-                            "type": "radio",
+                            "name": "item_type",
+                            "aria-label": "",
+                            "type": "select",
+                            "instructions": "Select whether to use an existing portfolio post or enter custom details.",
+                            "required": 1,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "30",
+                                "class": "",
+                                "id": ""
+                            },
                             "choices": {
-                                "post": "Select from Portfolio",
-                                "custom": "Custom Input"
+                                "post": "Select Portfolio Post",
+                                "custom": "Enter Custom Details"
                             },
                             "default_value": "post",
-                            "layout": "horizontal"
+                            "allow_null": 0,
+                            "multiple": 0,
+                            "ui": 0,
+                            "return_format": "value",
+                            "placeholder": "",
+                            "parent_repeater": "field_project_slider_items"
                         },
                         {
-                            "key": "field_post_object",
-                            "label": "Project Post",
+                            "key": "field_project_post",
+                            "label": "Portfolio Post",
                             "name": "project_post",
+                            "aria-label": "",
                             "type": "post_object",
-                            "post_type": ["portfolio"],
-                            "multiple": 1,
-                            "ui": 1,
+                            "instructions": "Select the portfolio project to display.",
+                            "required": 1,
                             "conditional_logic": [
-                                [
-                                    {"field": "field_project_item_type", "operator": "==", "value": "post"}
-                                ]
-                            ]
+                                {
+                                    "field": "field_item_type",
+                                    "operator": "==",
+                                    "value": "post"
+                                }
+                            ],
+                            "wrapper": {
+                                "width": "70",
+                                "class": "",
+                                "id": ""
+                            },
+                            "post_type": [
+                                "portfolio"
+                            ],
+                            "post_status": "",
+                            "taxonomy": "",
+                            "return_format": "object",
+                            "multiple": 0,
+                            "allow_null": 0,
+                            "allow_in_bindings": 0,
+                            "bidirectional": 0,
+                            "ui": 1,
+                            "bidirectional_target": [],
+                            "parent_repeater": "field_project_slider_items"
                         },
                         {
-                            "key": "field_custom_items",
-                            "label": "Custom Items",
-                            "name": "custom_items",
-                            "type": "repeater",
-                            "layout": "row",
-                            "button_label": "Add Custom Item",
+                            "key": "field_custom_image",
+                            "label": "Custom Image",
+                            "name": "custom_image",
+                            "aria-label": "",
+                            "type": "image",
+                            "instructions": "Upload the image for the slide.",
+                            "required": 1,
                             "conditional_logic": [
-                                [
-                                    {"field": "field_project_item_type", "operator": "==", "value": "custom"}
-                                ]
-                            ],
-                            "sub_fields": [
                                 {
-                                    "key": "field_custom_image",
-                                    "label": "Custom Image",
-                                    "name": "custom_image",
-                                    "type": "image"
-                                },
-                                {
-                                    "key": "field_custom_title",
-                                    "label": "Custom Title",
-                                    "name": "custom_title",
-                                    "type": "text"
-                                },
-                                {
-                                    "key": "field_custom_link",
-                                    "label": "Custom Link",
-                                    "name": "custom_link",
-                                    "type": "url"
+                                    "field": "field_item_type",
+                                    "operator": "==",
+                                    "value": "custom"
                                 }
-                            ]
+                            ],
+                            "wrapper": {
+                                "width": "33.3",
+                                "class": "",
+                                "id": ""
+                            },
+                            "return_format": "array",
+                            "preview_size": "thumbnail",
+                            "library": "all",
+                            "min_width": "",
+                            "min_height": "",
+                            "min_size": "",
+                            "max_width": "",
+                            "max_height": "",
+                            "max_size": "",
+                            "mime_types": "",
+                            "parent_repeater": "field_project_slider_items"
+                        },
+                        {
+                            "key": "field_custom_title",
+                            "label": "Custom Title",
+                            "name": "custom_title",
+                            "aria-label": "",
+                            "type": "text",
+                            "instructions": "The title for the custom project.",
+                            "required": 1,
+                            "conditional_logic": [
+                                {
+                                    "field": "field_item_type",
+                                    "operator": "==",
+                                    "value": "custom"
+                                }
+                            ],
+                            "wrapper": {
+                                "width": "33.3",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "",
+                            "maxlength": "",
+                            "placeholder": "",
+                            "prepend": "",
+                            "append": "",
+                            "parent_repeater": "field_project_slider_items"
+                        },
+                        {
+                            "key": "field_custom_link",
+                            "label": "Custom Link (Optional)",
+                            "name": "custom_link",
+                            "aria-label": "",
+                            "type": "url",
+                            "instructions": "The URL to link to when clicking the image/button.",
+                            "required": 0,
+                            "conditional_logic": [
+                                {
+                                    "field": "field_item_type",
+                                    "operator": "==",
+                                    "value": "custom"
+                                }
+                            ],
+                            "wrapper": {
+                                "width": "33.3",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "",
+                            "placeholder": "",
+                            "parent_repeater": "field_project_slider_items"
                         }
                     ]
                 }
@@ -103,13 +233,32 @@
     ],
     "location": [
         [
-            {"param": "page", "operator": "==", "value": "10"}
+            {
+                "param": "page",
+                "operator": "==",
+                "value": "10"
+            }
         ],
         [
-            {"param": "page", "operator": "==", "value": "16"}
+            {
+                "param": "page",
+                "operator": "==",
+                "value": "16"
+            }
         ],
         [
-            {"param": "post_type", "operator": "==", "value": "portfolio"}
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "portfolio"
+            }
+        ],
+        [
+            {
+                "param": "page_template",
+                "operator": "==",
+                "value": "packages-page.php"
+            }
         ]
     ],
     "menu_order": 5,
@@ -117,6 +266,10 @@
     "style": "default",
     "label_placement": "top",
     "instruction_placement": "label",
+    "hide_on_screen": "",
     "active": true,
-    "description": "Project slider section configuration."
+    "description": "Project slider section configuration.",
+    "show_in_rest": 0,
+    "display_title": "",
+    "modified": 1762221433
 }
