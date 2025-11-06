@@ -664,19 +664,17 @@ textarea {
 	float: left;
 	position: absolute;
 	top: 100%;
-	left: -999em;
+	display: none;
 	z-index: 99999;
 }
 
 .main-navigation ul ul ul {
-	left: -999em;
 	top: 0;
 }
 
 .main-navigation ul ul li:hover > ul,
 .main-navigation ul ul li.focus > ul {
 	display: block;
-	left: auto;
 }
 
 .main-navigation ul ul a {
@@ -685,7 +683,7 @@ textarea {
 
 .main-navigation ul li:hover > ul,
 .main-navigation ul li.focus > ul {
-	left: auto;
+	display: block;
 }
 
 .main-navigation li {
