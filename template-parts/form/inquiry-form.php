@@ -1,0 +1,1 @@
+<section class="inquiry-form py-20 md:py-32 bg-brown-light"></section>

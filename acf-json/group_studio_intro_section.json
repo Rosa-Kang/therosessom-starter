@@ -3,6 +3,26 @@
     "title": "Studio Intro Section",
     "fields": [
         {
+            "key": "field_studio_intro_subtitle",
+            "label": "Subtitle",
+            "name": "studio_intro_subtitle",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "Small uppercase text above the main title (e.g., 'OUR STUDIO')",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "OUR STUDIO",
+            "maxlength": "",
+            "placeholder": "Enter subtitle text",
+            "prepend": "",
+            "append": ""
+        },
+        {
             "key": "field_studio_intro_title",
             "label": "Main Title",
             "name": "studio_intro_title",
@@ -66,6 +86,13 @@
                 "operator": "==",
                 "value": "10"
             }
+        ],
+        [
+            {
+                "param": "page_template",
+                "operator": "==",
+                "value": "inquiry-page.php"
+            }
         ]
     ],
     "menu_order": 3,
@@ -78,5 +105,5 @@
     "description": "Centered text section with optional CTA button",
     "show_in_rest": 0,
     "display_title": "",
-    "modified": 1761095963
+    "modified": 1762470380
 }

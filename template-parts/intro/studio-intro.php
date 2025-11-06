@@ -29,7 +29,7 @@ if (!$studio_intro_title && !$studio_intro_description) {
             
             <!-- Main Title -->
             <?php if ($studio_intro_title) : ?>
-                <h2 class="studio-intro-title font-serif text-xl text-cream-light uppercase leading-tight mb-[52px]" 
+                <h2 class="studio-intro-title font-serif text-xl text-cream-light leading-tight mb-[52px]" 
                     data-aos="fade-up" 
                     data-aos-duration="800" 
                     data-aos-delay="100">
