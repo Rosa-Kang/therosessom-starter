@@ -1,3 +1,5 @@
+@use 'variables' as *;
+
 @layer components {
   // Hero Section Styles
   .hero-section {
@@ -26,7 +28,7 @@
         position: relative;
         width: 100%;
         height: 100vh;
-        min-height: 600px; // Minimum height for smaller screens
+        min-height: 600px;
         background-position: center;
         background-size: cover;
         background-repeat: no-repeat;
@@ -100,124 +102,124 @@
   }
 
    // Intro Section Styles
-.intro-section {
-  position: relative;
-  min-height: 100vh;
-  background-color: #F5F2ED; // cream-light from tailwind config
-  
-  // Polaroid Frame
-  .intro-polaroid {
-    max-width: 400px;
+  .intro-section {
+    position: relative;
+    min-height: 100vh;
+    background-color: #F5F2ED; // cream-light from tailwind config
     
-    @media (min-width: 768px) {
-      max-width: 500px;
+    // Polaroid Frame
+    .intro-polaroid {
+      max-width: 400px;
+      
+      @media (min-width: 768px) {
+        max-width: 500px;
+      }
+      
+      .polaroid-frame {
+        background: white;
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 
+                    0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        
+        img {
+          width: 100%;
+          height: auto;
+          display: block;
+        }
+        
+        .polaroid-caption {
+          font-family: theme('fontFamily.mono');
+          font-size: 0.875rem;
+          color: #6B5444; // brown from config
+          margin-top: 0.75rem;
+          text-align: center;
+        }
+        
+        // Subtle hover effect
+        @media (hover: hover) {
+          &:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 
+                        0 4px 6px -2px rgba(0, 0, 0, 0.05);
+          }
+        }
+      }
     }
     
-    .polaroid-frame {
-      background: white;
-      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 
-                  0 2px 4px -1px rgba(0, 0, 0, 0.06);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-      
-      img {
-        width: 100%;
-        height: auto;
-        display: block;
+    // Title Group
+    .intro-title-group {
+      h2 {
+        font-family: theme('fontFamily.serif');
+        color: #2C2C2C; // charcoal
+        font-weight: 400;
+        letter-spacing: -0.02em;
       }
       
-      .polaroid-caption {
-        font-family: theme('fontFamily.mono');
-        font-size: 0.875rem;
-        color: #6B5444; // brown from config
-        margin-top: 0.75rem;
-        text-align: center;
+      .intro-accent {
+        font-family: theme('fontFamily.serif');
+        color: #2C2C2C; // charcoal, not brown per design
+        font-style: italic;
+        font-weight: 300;
+      }
+    }
+    
+    // Content
+    .intro-content {
+      color: #2C2C2C; // charcoal
+      line-height: 1.6;
+      
+      p {
+        margin-bottom: 1rem;
+        
+        &:last-child {
+          margin-bottom: 0;
+        }
       }
       
-      // Subtle hover effect
-      @media (hover: hover) {
+      a {
+        color: #6B5444; // brown
+        text-decoration: underline;
+        transition: color 0.3s ease;
+        
         &:hover {
-          transform: translateY(-4px);
-          box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 
-                      0 4px 6px -2px rgba(0, 0, 0, 0.05);
+          color: #2C2C2C; // charcoal
+        }
+      }
+    }
+    
+    // Scroll Indicator
+    .intro-scroll-indicator {
+      svg {
+        animation: bounce 2s infinite;
+      }
+    }
+    
+    @keyframes bounce {
+      0%, 100% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(-10px);
+      }
+    }
+    
+    // Responsive adjustments
+    @media (max-width: 768px) {
+      .intro-polaroid {
+        max-width: 320px;
+      }
+      
+      .intro-title-group {
+        h2 {
+          font-size: 3rem;
+        }
+        
+        .intro-accent {
+          font-size: 2.5rem;
         }
       }
     }
   }
-  
-  // Title Group
-  .intro-title-group {
-    h2 {
-      font-family: theme('fontFamily.serif');
-      color: #2C2C2C; // charcoal
-      font-weight: 400;
-      letter-spacing: -0.02em;
-    }
-    
-    .intro-accent {
-      font-family: theme('fontFamily.serif');
-      color: #2C2C2C; // charcoal, not brown per design
-      font-style: italic;
-      font-weight: 300;
-    }
-  }
-  
-  // Content
-  .intro-content {
-    color: #2C2C2C; // charcoal
-    line-height: 1.6;
-    
-    p {
-      margin-bottom: 1rem;
-      
-      &:last-child {
-        margin-bottom: 0;
-      }
-    }
-    
-    a {
-      color: #6B5444; // brown
-      text-decoration: underline;
-      transition: color 0.3s ease;
-      
-      &:hover {
-        color: #2C2C2C; // charcoal
-      }
-    }
-  }
-  
-  // Scroll Indicator
-  .intro-scroll-indicator {
-    svg {
-      animation: bounce 2s infinite;
-    }
-  }
-  
-  @keyframes bounce {
-    0%, 100% {
-      transform: translateY(0);
-    }
-    50% {
-      transform: translateY(-10px);
-    }
-  }
-  
-  // Responsive adjustments
-  @media (max-width: 768px) {
-    .intro-polaroid {
-      max-width: 320px;
-    }
-    
-    .intro-title-group {
-      h2 {
-        font-size: 3rem;
-      }
-      
-      .intro-accent {
-        font-size: 2.5rem;
-      }
-    }
-  }
-}
 
   // Callout Link Hover Effect
   .hover-draw-line {
@@ -236,4 +238,80 @@
       width: 100%;
     }
   }
+
+  // Inquiry Form
+  .inquiry-form {
+    .wpforms-container {
+      form.wpforms-form {
+        //Form Text Style
+        .wpforms-field-label, .wpforms-field-label-inline {
+          color: theme('colors.cream.light'); 
+          font-weight: 200;
+        }
+
+        //Form Button Style
+        .wpforms-submit-container {
+          text-align: right;
+
+            button[type=submit] {
+                font-weight: 200;
+                background: transparent !important;
+                border: none;
+                padding: 0;
+                position: relative;
+                text-transform: uppercase;
+                font-size: 0.75rem;
+                margin-top: 5rem;
+                margin-bottom: -2.5rem;
+    
+                &::after {
+                  content: '';
+                  display: inline-block;
+                  width: 16px; 
+                  height: 16px;
+                  background-image: url('/wp-content/themes/therosessom/assets/images/arrow-forward.svg');
+                  transform: rotate(45deg);
+                  background-size: contain;
+                  background-repeat: no-repeat;
+                  background-position: center;
+                  margin-left: 0.5rem;
+                  vertical-align: middle;
+                  transition: $transition-base;
+                }
+    
+                &:hover {
+                background: none;
+                padding: 0;
+                border: none;
+                opacity: 0.65;
+    
+                  &::after {
+                    transform: rotate(45deg) translateX(5px);
+                    transition: $transition-base;
+                  }
+                }
+            }
+        }
+
+        input[type=email], input[type=text], textarea, select {
+          background: transparent;
+          border-top: none;
+          border-right: none;
+          border-left: none;
+          border-bottom: 0.9px solid theme('colors.cream.basic');
+          border-radius: 0;
+          color: theme('colors.cream.light');
+          padding: 0;
+
+          &:hover, &:focus, &:active {
+          border-top: none !important;
+          border-right: none !important;
+          border-left: none !important;
+          border-bottom: 0.9px solid theme('colors.pink.light');
+          box-shadow: none;
+          }
+      }
+    }
+  }
+}
 }

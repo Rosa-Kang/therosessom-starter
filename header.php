@@ -66,7 +66,7 @@
 
 <div id="secondary-menu-panel" class="fixed top-0 left-0 w-full max-w-md h-screen text-black p-8 transform -translate-x-full transition-transform duration-300 ease-in-out overflow-y-auto">    
     <div id="menu-panel-header" class="relative flex items-center h-20 px-8 border-b border-gray-200">
-        <button id="submenu-back-btn" class="flex items-center space-x-2 text-xl font-medium">
+        <button id="submenu-back-btn" class="absolute flex items-center space-x-2 text-xl font-medium">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
             <span id="back-button-label" class="uppercase"></span>
         </button>

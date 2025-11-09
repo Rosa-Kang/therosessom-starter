@@ -1,4 +1,3 @@
-// Import Swiper and required modules
 import Swiper from 'swiper';
 import { Navigation, Pagination, Autoplay, EffectFade } from 'swiper/modules';
 import 'swiper/css';
@@ -125,8 +124,7 @@ function initMobileMenu() {
     const menuContainer = document.getElementById('menu-levels-container');
     
     if (!toggleBtn || !panel) return;
-
-    // 메뉴 아이템에 토글 버튼을 동적으로 추가하는 함수
+    
     function addSubmenuToggles() {
         const menu = document.getElementById('secondary-menu');
         if (!menu) return;
@@ -198,17 +196,14 @@ function initMobileMenu() {
         if (currentDepth > 0) {
             backBtn.classList.remove('hidden');
             const parentItem = historyStack[historyStack.length - 1];
-            // 부모 메뉴 항목의 텍스트를 백 버튼 레이블로 설정
             const labelText = parentItem ? parentItem.querySelector('a').textContent : 'BACK';
             backLabel.textContent = labelText;
         } else {
             backBtn.classList.add('hidden');
         }
-        // 이 함수에서 menuContainer.style.transform 로직은 완전히 제거됨
         menuContainer.style.transform = ''; 
     }
     
-    // 서브 메뉴 토글 처리 함수 (슬라이드 인 로직 변경)
     function handleSubmenuToggle(e) {
         const toggleButton = e.target.closest('.submenu-toggle');
         if (!toggleButton) return;
@@ -221,41 +216,38 @@ function initMobileMenu() {
         
         if (!submenu) return;
         
-        // 현재 레벨 (곧 숨겨질 레벨)
+        
         const currentLevelNav = menuContainer.querySelector(`.menu-level-${currentDepth}`);
         
         currentDepth++;
         historyStack.push(parentListItem);
         
-        // 새로운 메뉴 레벨 컨테이너 생성
-        const newMenuLevel = document.createElement('nav');
-        // 'left-0'과 'absolute'로 위치를 제어하고, 초기 위치는 100% (오른쪽 화면 밖)로 설정
-        newMenuLevel.classList.add(`menu-level-${currentDepth}`, 'absolute', 'top-0', 'left-0', 'w-full', 'h-full', 'p-8', 'pt-0', 'transition-all', 'duration-300', 'ease-in-out');
-        newMenuLevel.style.left = '100%'; // 시작 위치: 오른쪽 화면 밖
-        newMenuLevel.style.display = 'block'; // 혹시 모를 SCSS의 display:none 방지
         
-        // 서브 메뉴 내용 복제 및 추가
+        const newMenuLevel = document.createElement('nav');
+        
+        newMenuLevel.classList.add(`menu-level-${currentDepth}`, 'absolute', 'top-0', 'left-0', 'w-full', 'h-full', 'p-8', 'pt-0', 'transition-all', 'duration-300', 'ease-in-out');
+        newMenuLevel.style.left = '100%'; 
+        newMenuLevel.style.display = 'block'; 
+        
+        
         const submenuClone = submenu.cloneNode(true); 
         newMenuLevel.appendChild(submenuClone);
-        submenuClone.style.display = 'block'; // 복제된 서브 메뉴를 보이도록 설정
+        submenuClone.style.display = 'block'; 
         
         menuContainer.appendChild(newMenuLevel);
 
-        // 애니메이션 시작: DOM 추가 후 다음 틱에 left 속성 변경
+        
         setTimeout(() => {
-            // (1) 새로운 레벨 슬라이드 인
             newMenuLevel.style.left = '0%'; 
             
-            // (2) 현재 레벨 숨기기 (사용자 요청: display: none)
             if (currentLevelNav) {
                 currentLevelNav.style.display = 'none';
             }
             
-            updateBackBtnDisplay(); // 뒤로가기 버튼 업데이트
+            updateBackBtnDisplay();
         }, 10);
     }
     
-    // 뒤로가기 버튼 처리 함수 (슬라이드 아웃/인 로직 변경)
     function handleBackButtonClick() {
         if (currentDepth <= 0) return;
         
@@ -264,33 +256,30 @@ function initMobileMenu() {
         
         historyStack.pop();
         
-        // 1. 돌아갈 이전 레벨 (새로운 현재 레벨) 찾기
         const prevLevelNav = menuContainer.querySelector(`.menu-level-${currentDepth}`);
-        // 2. 슬라이드 아웃될 레벨 (이전 깊이 레벨)
+        
         const levelToRemove = document.querySelector(`.menu-level-${oldDepth}`);
 
-        // 애니메이션 준비
+        
         if (prevLevelNav) {
-             // 숨겨진 이전 레벨을 보이게 하고, 왼쪽 화면 밖으로 이동 (-100%)
              prevLevelNav.style.display = 'block'; 
-             // transform 대신 left 사용: left가 -100%이므로 왼쪽 화면 밖에서 시작합니다.
              prevLevelNav.style.left = '-100%'; 
         }
 
         updateBackBtnDisplay();
 
-        // 애니메이션 실행
+        
         setTimeout(() => {
             if (prevLevelNav) {
-                // 이전 레벨 (메인 메뉴 등) 슬라이드 인
+                
                 prevLevelNav.style.left = '0%'; 
             }
             
             if (levelToRemove) {
-                // 현재 레벨 슬라이드 아웃 (오른쪽 화면 밖으로)
+                
                 levelToRemove.style.left = '100%'; 
                 
-                // transition duration 후 제거
+                
                 setTimeout(() => {
                     levelToRemove.remove();
                 }, 300); 
@@ -298,7 +287,7 @@ function initMobileMenu() {
         }, 10);
     }
 
-    // Initial setup
+    
     addSubmenuToggles();
 
     toggleBtn.addEventListener('click', () => {

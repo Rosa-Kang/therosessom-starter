@@ -123,7 +123,7 @@ header#masthead {
     max-width: 28rem;
     height: 100vh;
     color: theme('colors.black');
-    background-color: theme('colors.cream.light / 0.5'); 
+    background-color: theme('colors.cream.light / 0.7'); 
     padding: 2rem;
     transform: translateX(-100%); // Start off-screen to the left
     transition: transform 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);
@@ -183,6 +183,10 @@ header#masthead {
             transform: translateY(0);
             transition: opacity 0.3s ease-in-out 0.2s, transform 0.3s ease-in-out 0.2s;
         }
+    }
+
+    #submenu-back-btn {
+        top: -0.225rem;
     }
 }
 

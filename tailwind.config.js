@@ -20,7 +20,8 @@ export default {
         cream: {
           light: '#FBF8EF',
           DEFAULT: '#EBE5DD',
-          dark: '#E3DDD3'
+          dark: '#E3DDD3',
+          basic: '#D9D9D9'
         },
         green: {
           light : '#EAE8DC'
