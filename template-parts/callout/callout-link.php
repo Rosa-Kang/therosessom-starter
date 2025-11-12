@@ -51,7 +51,7 @@ if (!$title && !$image && !$links) {
                             ?>
                                 <li>
                                     <a href="<?php echo $link_url; ?>" <?php echo $link_target; ?> class="group flex items-center justify-between py-2 border-b-2 border-black hover-draw-line">
-                                        <span class="text-sm font-light text-black group-hover:text-brown transition-colors duration-300">
+                                        <span class="text-sm font-light text-black group-hover:text-brown-burgundy transition-colors duration-300">
                                             <?php echo $link_title; ?>
                                         </span>
                                         <span class="text-sm font-medium text-black">

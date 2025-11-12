@@ -8,7 +8,7 @@
 
 $blurb = get_field('ig_blurb', 'option');
 $short_code = get_field('ig_shortcode', 'option');
-$text_color_class = ( is_front_page() || is_home() ) ? 'text-cream-light' : 'text-neutral-500 ';
+$text_color_class = ( is_front_page() || is_home() ) ? 'text-black' : 'text-cream-light';
 ?>
 
 

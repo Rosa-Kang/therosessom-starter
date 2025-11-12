@@ -53,15 +53,21 @@ if (!$studio_intro_title && !$studio_intro_description) {
                 $button_title = $studio_intro_button['title'];
                 $button_target = $studio_intro_button['target'] ? $studio_intro_button['target'] : '_self';
             ?>
-                <div class="studio-intro-cta" 
+                <div class="studio-intro-cta flex justify-center" 
                      data-aos="fade-up" 
                      data-aos-duration="800" 
                      data-aos-delay="300">
                     <a href="<?php echo esc_url($button_url); ?>" 
-                       target="<?php echo esc_attr($button_target); ?>"
-                       class="btn-primary inline-block px-8 py-3 text-cream-light text-base uppercase tracking-wider transition-all duration-300">
-                        <span><?php echo esc_html($button_title); ?></span>
-                    </a>
+                        target="<?php echo esc_attr($button_target); ?>"
+                        class="group flex px-8 py-3 text-cream-light text-base uppercase tracking-wider transition-all duration-300">
+                            <span><?php echo esc_html($button_title); ?></span>
+                            <div class="intro-scroll-indicator pl-2">
+                                <svg class="w-6 h-6 mx-auto text-cream-light group-hover:animate-bounce-down transition-transform duration-300" 
+                                    fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+                                </svg>
+                            </div>
+                        </a>
                 </div>
             <?php endif; ?>
             

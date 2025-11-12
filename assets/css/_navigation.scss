@@ -123,7 +123,7 @@ header#masthead {
     max-width: 28rem;
     height: 100vh;
     color: theme('colors.black');
-    background-color: theme('colors.cream.light / 0.7'); 
+    background-color: #fbf8eff5;
     padding: 2rem;
     transform: translateX(-100%); // Start off-screen to the left
     transition: transform 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);

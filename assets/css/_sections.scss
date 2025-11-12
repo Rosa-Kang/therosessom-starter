@@ -227,12 +227,12 @@
     &::after {
       content: '';
       position: absolute;
-      bottom: -2px; // Adjust to cover the border
+      bottom: -2px; 
       left: 0;
       width: 0;
-      height: 2px; // Match the border width
-      background-color: theme('colors.brown.DEFAULT');
-      transition: width 0.6s ease-out;
+      height: 2px; 
+      background-color: theme('colors.brown.burgundy');
+      transition: width 2s ease-in-out;
     }
     &:hover::after {
       width: 100%;

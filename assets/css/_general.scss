@@ -1,5 +1,12 @@
 @use 'variables' as *;
 /**
+* Site Anchor
+**/
+a:hover {
+    cursor: pointer;
+}
+
+/**
 * Button Style Arrow
 **/
 .btn-primary {

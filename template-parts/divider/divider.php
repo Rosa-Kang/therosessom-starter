@@ -44,31 +44,25 @@ if (empty($divider_items) || !is_array($divider_items)) {
                 <?php endif; ?>
 
                 <?php if ($image) : ?>
-                    <div class="relative overflow-hidden m-4">
-                        <img 
-                            src="<?php echo esc_url($image['sizes']['large'] ?? $image['url']); ?>"
-                            srcset="<?php echo esc_attr(wp_get_attachment_image_srcset($image['id'], 'large')); ?>"
-                            sizes="(max-height: 519px)"
-                            alt="<?php echo esc_attr($image['alt'] ?: $title); ?>"
-                            class="max-h-[519px] transition-transform duration-700 group-hover:scale-105 aspect-[1/1.36]"
-                            loading="lazy"
-                        >
-                        
-                        <!-- Hover Overlay with Link -->
+                    <?php
+                        $img_html = sprintf(
+                            '<img src="%s" srcset="%s" sizes="(max-height: 519px)" alt="%s" class="max-h-[519px] transition-transform duration-700 group-hover:scale-105 aspect-[1/1.36]" loading="lazy">',
+                            esc_url($image['sizes']['large'] ?? $image['url']),
+                            esc_attr(wp_get_attachment_image_srcset($image['id'], 'large')),
+                            esc_attr($image['alt'] ?: $title)
+                        );
+                    ?>
+                    <div class="relative overflow-hidden m-4 group">
                         <?php if ($link) : ?>
-                            <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end justify-start pl-2">
-                                <a href="<?php echo esc_url($link['url']); ?>"
-                                   class="inline-flex items-center text-white text-sm md:text-base uppercase tracking-widest font-mono transform translate-y-4 group-hover:translate-y-0 transition-all duration-500"
-                                   <?php echo $link['target'] ? 'target="' . esc_attr($link['target']) . '"' : ''; ?>>
-                                    <span><?php echo esc_html($link['title'] ?: 'Explore'); ?></span>
-                                    <svg class="w-5 h-5 ml-2 transform group-hover:translate-x-2 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
-                                    </svg>
-                                </a>
-                            </div>
+                            <a href="<?php echo esc_url($link['url']); ?>" <?php echo $link['target'] ? 'target="' . esc_attr($link['target']) . '"' : ''; ?>>
+                                <?php echo $img_html; ?>
+                            </a>
+                        <?php else : ?>
+                            <?php echo $img_html; ?>
                         <?php endif; ?>
                     </div>
                 <?php endif; ?>
+
             </div>
             <?php 
             $index++;
