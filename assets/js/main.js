@@ -50,36 +50,45 @@ function initHeroSwiper() {
 }
 
 function initProjectSwiper() {
-    const projectSwiper = document.querySelector('.project-swiper');
-    if (!projectSwiper) return;
+    const projectSections = document.querySelectorAll('.project-slider-section');
+    if (!projectSections.length) return;
     
-    new Swiper('.project-swiper', {
-        modules: [Navigation, Autoplay], 
-        slidesPerView: 1.2, 
-        spaceBetween: 20, 
-        loop: true, 
+    projectSections.forEach((section) => {
+        const swiperEl = section.querySelector('.project-swiper');
+        if (!swiperEl) return;
         
-        autoplay: {
-            delay: 2000,
-            disableOnInteraction: false,
-            pauseOnMouseEnter: true
-        },
+        const swiperId = swiperEl.getAttribute('data-swiper-id');
+        const prevBtn = section.querySelector(`.project-swiper-prev-${swiperId}`);
+        const nextBtn = section.querySelector(`.project-swiper-next-${swiperId}`);
         
-        navigation: {
-            nextEl: '.project-swiper-next', 
-            prevEl: '.project-swiper-prev', 
-        },
-        
-        breakpoints: {
-            768: {
-                slidesPerView: 3.2,
-                spaceBetween: 30
+        new Swiper(swiperEl, {
+            modules: [Navigation, Autoplay], 
+            slidesPerView: 1.2, 
+            spaceBetween: 20, 
+            loop: true, 
+            
+            autoplay: {
+                delay: 2000,
+                disableOnInteraction: false,
+                pauseOnMouseEnter: true
             },
-            1024: {
-                slidesPerView: 4, 
-                spaceBetween: 30
+            
+            navigation: {
+                nextEl: nextBtn,
+                prevEl: prevBtn,
+            },
+            
+            breakpoints: {
+                768: {
+                    slidesPerView: 3.2,
+                    spaceBetween: 30
+                },
+                1024: {
+                    slidesPerView: 4, 
+                    spaceBetween: 30
+                }
             }
-        }
+        });
     });
 }
 

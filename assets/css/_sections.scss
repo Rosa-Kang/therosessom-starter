@@ -63,12 +63,12 @@
         }
       }
     }
-     
+
     .swiper-button-prev,
     .swiper-button-next {
       opacity: 0;
       transition: opacity 0.3s ease;
-       
+
       @media (hover: hover) {
         .hero-section:hover & {
           opacity: 0.8;
@@ -314,4 +314,37 @@
     }
   }
 }
+
+  //Project Slider 
+  .project-slider-section {
+    .swiper-button-prev::after,
+    .swiper-button-next::after { 
+          content: '' !important;
+          background-image: none;
+    }
+
+    .swiper-button-prev,
+    .swiper-button-next {
+      background-repeat: no-repeat;
+      background-size: contain;
+      background-position: center;
+      transition: all ease-in-out 0.3s;
+    }
+
+    .swiper-button-prev{
+      left: -16px;
+      background-image: url(/wp-content/themes/therosessom/assets/images/arrow-backward.svg);
+      &:hover {
+        transform: translateX(-0.5rem);
+      } 
+    }
+
+    .swiper-button-next {
+      right: -16px;
+      background-image: url(/wp-content/themes/therosessom/assets/images/arrow-forward.svg); 
+      &:hover {
+        transform: translateX(0.5rem);
+      } 
+    }
+  }
 }
