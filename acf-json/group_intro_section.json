@@ -91,9 +91,9 @@
     "location": [
         [
             {
-                "param": "page_type",
+                "param": "page",
                 "operator": "==",
-                "value": "front_page"
+                "value": "12"
             }
         ]
     ],
@@ -107,5 +107,5 @@
     "description": "Intro section configuration for the front page",
     "show_in_rest": 0,
     "display_title": "",
-    "modified": 1762470360
+    "modified": 1764445766
 }

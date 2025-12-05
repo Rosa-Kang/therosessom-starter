@@ -93,7 +93,7 @@
             {
                 "param": "page",
                 "operator": "==",
-                "value": "6"
+                "value": "12"
             }
         ]
     ],
@@ -107,5 +107,5 @@
     "description": "A section with a title, a list of links (repeater), and an image.",
     "show_in_rest": 0,
     "display_title": "",
-    "modified": 1761096022
+    "modified": 1764445794
 }

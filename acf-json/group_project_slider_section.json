@@ -63,12 +63,12 @@
                     "parent_repeater": "field_project_slider_sections"
                 },
                 {
-                    "key": "field_project_slider_items",
-                    "label": "Project Slider Items",
-                    "name": "project_slider_items",
+                    "key": "field_project_items",
+                    "label": "Project Items",
+                    "name": "project_items",
                     "aria-label": "",
-                    "type": "repeater",
-                    "instructions": "Add individual slides. Choose between selecting a Portfolio post or entering custom details.",
+                    "type": "post_object",
+                    "instructions": "Select the portfolio projects to display in the slider. You can filter by category.",
                     "required": 0,
                     "conditional_logic": 0,
                     "wrapper": {
@@ -76,157 +76,19 @@
                         "class": "",
                         "id": ""
                     },
-                    "layout": "block",
-                    "min": 0,
-                    "max": 0,
-                    "rows_per_page": 20,
-                    "button_label": "Add Slide Item",
-                    "collapsed": "field_item_type",
-                    "sub_fields": [
-                        {
-                            "key": "field_item_type",
-                            "label": "Item Type",
-                            "name": "item_type",
-                            "aria-label": "",
-                            "type": "select",
-                            "instructions": "Select whether to use an existing portfolio post or enter custom details.",
-                            "required": 1,
-                            "conditional_logic": 0,
-                            "wrapper": {
-                                "width": "30",
-                                "class": "",
-                                "id": ""
-                            },
-                            "choices": {
-                                "post": "Select Portfolio Post",
-                                "custom": "Enter Custom Details"
-                            },
-                            "default_value": "post",
-                            "allow_null": 0,
-                            "multiple": 0,
-                            "ui": 0,
-                            "return_format": "value",
-                            "placeholder": "",
-                            "parent_repeater": "field_project_slider_items"
-                        },
-                        {
-                            "key": "field_project_post",
-                            "label": "Portfolio Post",
-                            "name": "project_post",
-                            "aria-label": "",
-                            "type": "post_object",
-                            "instructions": "Select the portfolio project to display.",
-                            "required": 1,
-                            "conditional_logic": [
-                                {
-                                    "field": "field_item_type",
-                                    "operator": "==",
-                                    "value": "post"
-                                }
-                            ],
-                            "wrapper": {
-                                "width": "70",
-                                "class": "",
-                                "id": ""
-                            },
-                            "post_type": [
-                                "portfolio"
-                            ],
-                            "post_status": "",
-                            "taxonomy": "",
-                            "return_format": "object",
-                            "multiple": 0,
-                            "allow_null": 0,
-                            "allow_in_bindings": 0,
-                            "bidirectional": 0,
-                            "ui": 1,
-                            "bidirectional_target": [],
-                            "parent_repeater": "field_project_slider_items"
-                        },
-                        {
-                            "key": "field_custom_image",
-                            "label": "Custom Image",
-                            "name": "custom_image",
-                            "aria-label": "",
-                            "type": "image",
-                            "instructions": "Upload the image for the slide.",
-                            "required": 1,
-                            "conditional_logic": [
-                                {
-                                    "field": "field_item_type",
-                                    "operator": "==",
-                                    "value": "custom"
-                                }
-                            ],
-                            "wrapper": {
-                                "width": "33.3",
-                                "class": "",
-                                "id": ""
-                            },
-                            "return_format": "array",
-                            "preview_size": "thumbnail",
-                            "library": "all",
-                            "min_width": "",
-                            "min_height": "",
-                            "min_size": "",
-                            "max_width": "",
-                            "max_height": "",
-                            "max_size": "",
-                            "mime_types": "",
-                            "parent_repeater": "field_project_slider_items"
-                        },
-                        {
-                            "key": "field_custom_title",
-                            "label": "Custom Title",
-                            "name": "custom_title",
-                            "aria-label": "",
-                            "type": "text",
-                            "instructions": "The title for the custom project.",
-                            "required": 1,
-                            "conditional_logic": [
-                                {
-                                    "field": "field_item_type",
-                                    "operator": "==",
-                                    "value": "custom"
-                                }
-                            ],
-                            "wrapper": {
-                                "width": "33.3",
-                                "class": "",
-                                "id": ""
-                            },
-                            "default_value": "",
-                            "maxlength": "",
-                            "placeholder": "",
-                            "prepend": "",
-                            "append": "",
-                            "parent_repeater": "field_project_slider_items"
-                        },
-                        {
-                            "key": "field_custom_link",
-                            "label": "Custom Link (Optional)",
-                            "name": "custom_link",
-                            "aria-label": "",
-                            "type": "url",
-                            "instructions": "The URL to link to when clicking the image/button.",
-                            "required": 0,
-                            "conditional_logic": [
-                                {
-                                    "field": "field_item_type",
-                                    "operator": "==",
-                                    "value": "custom"
-                                }
-                            ],
-                            "wrapper": {
-                                "width": "33.3",
-                                "class": "",
-                                "id": ""
-                            },
-                            "default_value": "",
-                            "placeholder": "",
-                            "parent_repeater": "field_project_slider_items"
-                        }
-                    ]
+                    "post_type": [
+                        "portfolio"
+                    ],
+                    "post_status": "",
+                    "taxonomy": "",
+                    "return_format": "object",
+                    "multiple": 1,
+                    "allow_null": 0,
+                    "allow_in_bindings": 0,
+                    "bidirectional": 0,
+                    "ui": 1,
+                    "bidirectional_target": [],
+                    "parent_repeater": "field_project_slider_sections"
                 }
             ]
         }
@@ -271,5 +133,5 @@
     "description": "Project slider section configuration.",
     "show_in_rest": 0,
     "display_title": "",
-    "modified": 1762221433
+    "modified": 1764446025
 }

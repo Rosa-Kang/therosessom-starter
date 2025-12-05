@@ -53,12 +53,19 @@ if ($button && isset($button['title'], $button['url'])) {
             <?php if ($button_text && $button_link) : ?>
                 <a 
                     href="<?php echo $button_link; ?>" 
-                    class="group inline-flex items-center text-sm font-sans uppercase tracking-widest text-cream-light transition-colors duration-300"
+                    class="button group inline-flex items-center text-sm font-sans uppercase tracking-widest text-cream-light transition-colors duration-300"
                 >
-                    <?php echo $button_text; ?>
-                    <svg class="w-4 h-4 ml-3 transform transition-transform duration-300 group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
-                    </svg>
+                    <span><?php echo $button_text; ?></span>    
+                    <svg 
+                            class="ml-2 w-4 h-4 rotate-[45deg] transition-transform duration-300 group-hover:translate-x-1" 
+                            xmlns="http://www.w3.org/2000/svg" 
+                            fill="none" 
+                            viewBox="0 0 24 24" 
+                            stroke-width="2" 
+                            stroke="currentColor"
+                        >
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+                        </svg>
                 </a>
             <?php endif; ?>
         </div>

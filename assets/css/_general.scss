@@ -6,6 +6,10 @@ a:hover {
     cursor: pointer;
 }
 
+a.button > span {
+    text-decoration: underline;
+}
+
 /**
 * Button Style Arrow
 **/

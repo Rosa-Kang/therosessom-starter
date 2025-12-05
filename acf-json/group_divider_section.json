@@ -93,9 +93,9 @@
     "location": [
         [
             {
-                "param": "page_type",
+                "param": "page",
                 "operator": "==",
-                "value": "front_page"
+                "value": "12"
             }
         ]
     ],
@@ -109,5 +109,5 @@
     "description": "",
     "show_in_rest": 0,
     "display_title": "",
-    "modified": 1760664467
+    "modified": 1764445782
 }

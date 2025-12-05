@@ -64,16 +64,16 @@ if (!function_exists('render_trio_card')) {
                     <a 
                         href="<?php echo $link_url; ?>" 
                         <?php echo $link_target; ?>
-                        class="inline-flex items-center text-sm font-medium uppercase tracking-widest group text-white hover:text-gray-400 transition-colors"
+                        class="button my-4 inline-flex items-center text-sm font-medium uppercase tracking-widest group text-white hover:text-gray-400 transition-colors"
                     >
                         <span><?php echo $link_title; ?></span>
                         
                         <svg 
-                            class="ml-2 w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" 
+                            class="ml-2 w-4 h-4 rotate-[45deg] transition-transform duration-300 group-hover:translate-x-1" 
                             xmlns="http://www.w3.org/2000/svg" 
                             fill="none" 
                             viewBox="0 0 24 24" 
-                            stroke-width="1.5" 
+                            stroke-width="2" 
                             stroke="currentColor"
                         >
                         <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />

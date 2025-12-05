@@ -34,7 +34,7 @@
                 "class": "",
                 "id": ""
             },
-            "layout": "row",
+            "layout": "block",
             "pagination": 0,
             "min": 0,
             "max": 0,
@@ -42,6 +42,25 @@
             "button_label": "Add New Accordion Section",
             "rows_per_page": 20,
             "sub_fields": [
+                {
+                    "key": "field_693248e356a50",
+                    "label": "",
+                    "name": "",
+                    "aria-label": "",
+                    "type": "tab",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "placement": "left",
+                    "endpoint": 0,
+                    "selected": 0,
+                    "parent_repeater": "field_accordion_sections"
+                },
                 {
                     "key": "field_section_title",
                     "label": "Section Title (Large)",
@@ -228,5 +247,5 @@
     "description": "Image and Accordion content sections.",
     "show_in_rest": 0,
     "display_title": "",
-    "modified": 1762225210
+    "modified": 1764903185
 }

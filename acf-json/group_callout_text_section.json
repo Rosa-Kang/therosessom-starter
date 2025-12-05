@@ -102,14 +102,58 @@
             "mime_types": "",
             "allow_in_bindings": 1,
             "preview_size": "medium"
+        },
+        {
+            "key": "field_callout_text_image_meta",
+            "label": "Image Metadata (Optional)",
+            "name": "callout_text_image_meta",
+            "aria-label": "",
+            "type": "repeater",
+            "instructions": "Optional meta info overlay on the image (e.g., date, page number).",
+            "required": 0,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "layout": "table",
+            "button_label": "Add Meta Item",
+            "max": 4,
+            "min": 0,
+            "rows_per_page": 20,
+            "collapsed": "",
+            "sub_fields": [
+                {
+                    "key": "field_meta_text",
+                    "label": "Text",
+                    "name": "meta_text",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "parent_repeater": "field_callout_text_image_meta"
+                }
+            ]
         }
     ],
     "location": [
         [
             {
-                "param": "page_template",
+                "param": "page",
                 "operator": "==",
-                "value": "studio-page.php"
+                "value": "10"
             }
         ],
         [
@@ -137,5 +181,5 @@
     "description": "Callout Text section configuration with split layout.",
     "show_in_rest": 0,
     "display_title": "",
-    "modified": 1762206407
+    "modified": 1764446037
 }
