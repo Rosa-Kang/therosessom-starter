@@ -12,10 +12,34 @@ if ( ! defined( 'THEME_VERSION' ) ) {
 	define( 'THEME_VERSION', wp_get_theme()->get( 'Version' ) );
 }
 
-// Vite server URL for development
-if ( ! defined( 'VITE_DEV_SERVER' ) ) {
-    define( 'VITE_DEV_SERVER', 'http://localhost:3000' );
+/**
+ * Enqueue scripts and styles.
+ */
+function therosessom_asset_loader() {
+	// Production: Load scripts from the manifest file
+	$manifest_path = get_template_directory() . '/dist/.vite/manifest.json';
+	if ( file_exists( $manifest_path ) ) {
+		$manifest = json_decode( file_get_contents( $manifest_path ), true );
+
+		// Enqueue the main JS file
+		if ( isset( $manifest['assets/js/main.js']['file'] ) ) {
+			wp_enqueue_script( 'therosessom-main-js', get_template_directory_uri() . '/dist/' . $manifest['assets/js/main.js']['file'], [], THEME_VERSION, true );
+		}
+
+		// Enqueue CSS files for the main JS entry
+		if ( isset( $manifest['assets/js/main.js']['css'] ) ) {
+			foreach ( $manifest['assets/js/main.js']['css'] as $css_file ) {
+				wp_enqueue_style( 'therosessom-' . basename($css_file, '.css'), get_template_directory_uri() . '/dist/' . $css_file, [], THEME_VERSION );
+			}
+		}
+
+		// Enqueue the main CSS file
+		if ( isset( $manifest['assets/css/style.scss']['file'] ) ) {
+			wp_enqueue_style( 'therosessom-main-css', get_template_directory_uri() . '/dist/' . $manifest['assets/css/style.scss']['file'], [], THEME_VERSION );
+		}
+	}
 }
+add_action( 'wp_enqueue_scripts', 'therosessom_asset_loader' );
 
 /**
  * Sets up theme defaults and registers support for various WordPress features.

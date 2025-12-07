@@ -15,7 +15,7 @@ $text_color_class = ( is_front_page() || is_home() ) ? 'text-black' : 'text-crea
 <section 
   class="relative py-6" 
 >
-  <div class="container lg:max-w-[1024px] mx-auto px-4" data-aos="fade-in" data-aos-duration="650">
+  <div class="container lg:max-w-[1024px] mx-auto px-4">
     <div class="flex flex-col items-center">
       <div class="mx-auto px-4 sm:px-6 lg:px-8"  >
         <?php if ($short_code): ?>

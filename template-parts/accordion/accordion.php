@@ -13,7 +13,13 @@ while (have_rows('accordion_sections')) : the_row();
 
     $section_title = get_sub_field('section_title');
     $orientation = get_sub_field('layout_orientation'); 
+    
+    // Automatically alternate layout based on row index
+    $index = get_row_index();
+    $orientation = ($index % 2 != 0) ? 'left-image' : 'right-image';
+
     $description = get_sub_field('section_description');
+    $price = get_sub_field('quote');
     $image_array = get_sub_field('section_image');
     $image_url = $image_array['url'] ?? '';
     $image_alt = $image_array['alt'] ?: $section_title;
@@ -28,28 +34,32 @@ while (have_rows('accordion_sections')) : the_row();
             
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 lg:grid-flow-col-dense">
     
-                <div class="image-column <?php echo esc_attr($image_order_class); ?> lg:self-stretch">
+                <div class="image-column <?php echo esc_attr($image_order_class); ?> lg:self-start">
                     <?php if ($image_url) : ?>
-                        <div class="w-full h-full min-h-[400px] lg:min-h-0 overflow-hidden transition-all duration-500 ease-in-out">
+                        <div class="relative w-full overflow-hidden transition-all duration-500 ease-in-out">
                             <img 
                                 src="<?php echo esc_url($image_url); ?>" 
                                 alt="<?php echo esc_attr($image_alt); ?>" 
-                                class="w-full h-full object-cover" 
+                                class="absolute inset-0 w-full h-full object-cover" 
                                 loading="lazy"
                             >
                         </div>
                     <?php endif; ?>
                 </div>
 
-                <div class="content-column <?php echo esc_attr($text_order_class); ?>">
+                <div class="content-column <?php echo esc_attr($text_order_class); ?> lg:self-center">
                     <?php if ($section_title) : ?>
-                        <h2 class="text-3xl md:text-5xl font-serif mb-6 md:mb-10 text-cream-light">
+                        <h2 class="text-3xl md:text-5xl font-normal font-sans  mb-6 md:mb-10 text-cream-light">
                             <?php echo esc_html($section_title); ?>
                         </h2>
                     <?php endif; ?>
 
                     <?php if ($description) : ?>
-                        <p class="text-sm md:text-base text-gray-400 mb-8"><?php echo $description; ?></p>
+                        <div class="text-sm text-cream-light py-4 prose prose-invert"><?php echo wpautop( $description ); ?></div>
+                    <?php endif; ?>
+
+                    <?php if ($price) : ?>
+                        <p class="text-2xl font-medium text-cream-light py-4"><?php echo $price; ?></p>
                     <?php endif; ?>
 
                     <?php if (have_rows('accordion_items')) : ?>

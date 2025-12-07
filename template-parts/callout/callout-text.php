@@ -34,7 +34,7 @@ if ($button && isset($button['title'], $button['url'])) {
 ?>
 
 <section id="service-split" class="service-split-section text-cream-light bg-brown-dark overflow-hidden">
-    <div class="flex flex-col md:flex-row" data-aos="fade-in" data-aos-duration="300">
+    <div class="flex flex-col md:flex-row" data-aos="fade-in" data-aos-duration="300" data-aos-anchor-placement="top-center">
         <div 
             class="content-col w-full md:w-1/2 p-12 lg:p-24 flex flex-col justify-center"
         >

@@ -50,6 +50,12 @@ if (!$studio_intro_title && !$studio_intro_description) {
             <!-- CTA Button -->
             <?php if ($studio_intro_button) : 
                 $button_url = $studio_intro_button['url'];
+
+                // If the URL is an anchor link starting with /#, remove the leading slash.
+                if (strpos($button_url, '/#') === 0) {
+                    $button_url = substr($button_url, 1);
+                }
+
                 $button_title = $studio_intro_button['title'];
                 $button_target = $studio_intro_button['target'] ? $studio_intro_button['target'] : '_self';
             ?>

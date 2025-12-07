@@ -24,7 +24,7 @@
     <a class="skip-link screen-reader-text" href="#primary"><?php esc_html_e( 'Skip to content', 'therosessom' ); ?></a>
 
     <header id="masthead" class="site-header fixed top-0 left-0 w-full z-50 px-8 transition-all duration-300 ease-in-out">
-        <div class="relative flex items-center justify-between h-20 w-full"> 
+        <div class="relative flex items-center justify-between h-20 xl:max-w-[1420px] mx-auto px-4"> 
     <!-- Left: Menu button -->
     <div class="z-[110] lg:w-[111px]">
         <button id="secondary-menu-toggle" aria-controls="secondary-menu-panel" aria-expanded="false"
