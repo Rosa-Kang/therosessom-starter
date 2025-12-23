@@ -20,7 +20,36 @@ document.addEventListener('DOMContentLoaded', () => {
     initScrollHeader();
     initMobileMenu();
     initAccordion(); 
+    initPrimaryMenuAnimation();
 });
+
+function initPrimaryMenuAnimation() {
+    const primaryMenu = document.getElementById('primary-menu');
+    if (!primaryMenu) return;
+
+    const menuLinks = primaryMenu.querySelectorAll('li a');
+
+    menuLinks.forEach(link => {
+        // Prevent re-processing
+        if (link.dataset.split) {
+            return;
+        }
+        link.dataset.split = 'true';
+
+        const originalText = link.textContent;
+        link.innerHTML = ''; 
+
+        originalText.split('').forEach(char => {
+            const span = document.createElement('span');
+            if (char === ' ') {
+                span.innerHTML = '&nbsp;';
+            } else {
+                span.textContent = char;
+            }
+            link.appendChild(span);
+        });
+    });
+}
 
 function initHeroSwiper() {
     const heroSwiper = document.querySelector('.hero-swiper');
@@ -306,11 +335,11 @@ function initMobileMenu() {
         closeBtn.addEventListener('click', closeMenu);
     }
 
-    document.addEventListener('keydown', (e) => {
+    document.keydown = (e) => {
         if (e.key === 'Escape' && toggleBtn.classList.contains('open')) {
             closeMenu();
         }
-    });
+    };
     
     panel.addEventListener('click', handleSubmenuToggle);
     

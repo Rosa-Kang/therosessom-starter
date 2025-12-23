@@ -17,6 +17,8 @@ header#masthead {
     #site-navigation a {
         color: theme('colors.cream.light');
         transition: color 0.4s ease-in-out;
+        position: relative;
+        display: inline-block;
     }
 
     // Scrolled state
@@ -45,17 +47,143 @@ header#masthead {
     }
 }
 
+#primary-menu a {
+    position: relative;
+}
+
+#primary-menu a:after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    transform: scaleX(0);
+    height: 1px;
+    bottom: -4px;
+    left: 0;
+    background-color: currentColor;
+    transform-origin: bottom right;
+    transition: transform .25s ease-out;
+}
+
+#primary-menu a:hover:after {
+    transform: scaleX(1);
+    transform-origin: bottom left;
+}
+
+#primary-menu a span {
+    display: inline-block;
+    transition: transform .1s;
+}
+
+#primary-menu a:hover span {
+    animation: wave .8s ease-in-out;
+}
+
+#primary-menu a:hover span:nth-child(1) {
+    animation-delay: .04s;
+}
+
+#primary-menu a:hover span:nth-child(2) {
+    animation-delay: .08s;
+}
+
+#primary-menu a:hover span:nth-child(3) {
+    animation-delay: .12s;
+}
+
+#primary-menu a:hover span:nth-child(4) {
+    animation-delay: .16s;
+}
+
+#primary-menu a:hover span:nth-child(5) {
+    animation-delay: .2s;
+}
+
+#primary-menu a:hover span:nth-child(6) {
+    animation-delay: .24s;
+}
+
+#primary-menu a:hover span:nth-child(7) {
+    animation-delay: .28s;
+}
+
+#primary-menu a:hover span:nth-child(8) {
+    animation-delay: .32s;
+}
+
+#primary-menu a:hover span:nth-child(9) {
+    animation-delay: .36s;
+}
+
+#primary-menu a:hover span:nth-child(10) {
+    animation-delay: .4s;
+}
+
+#primary-menu a:hover span:nth-child(11) {
+    animation-delay: .44s;
+}
+
+#primary-menu a:hover span:nth-child(12) {
+    animation-delay: .48s;
+}
+
+#primary-menu a:hover span:nth-child(13) {
+    animation-delay: .52s;
+}
+
+#primary-menu a:hover span:nth-child(14) {
+    animation-delay: .56s;
+}
+
+#primary-menu a:hover span:nth-child(15) {
+    animation-delay: .6s;
+}
+
+#primary-menu a:hover span:nth-child(16) {
+    animation-delay: .64s;
+}
+
+#primary-menu a:hover span:nth-child(17) {
+    animation-delay: .68s;
+}
+
+#primary-menu a:hover span:nth-child(18) {
+    animation-delay: .72s;
+}
+
+#primary-menu a:hover span:nth-child(19) {
+    animation-delay: .76s;
+}
+
+#primary-menu a:hover span:nth-child(20) {
+    animation-delay: .8s;
+}
+
+#primary-menu li.current-menu-item a:after {
+    transform: scaleX(1);
+    transform-origin: bottom left;
+}
+
+@keyframes wave {
+    0%,to {
+        transform: translateY(0)
+    }
+
+    50% {
+        transform: translateY(-6px)
+    }
+}
+
 // Secondary menu toggle button (hamburger)
 #secondary-menu-toggle {
     position: relative;
-    width: 20px; // Fixed width for better control
-    height: 12px; // Fixed height for better control
+    width: 20px;
+    height: 12px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
     cursor: pointer;
-    z-index: 110; // Ensure it's above the menu panel
+    z-index: 110;
     
     .bar {
         position: absolute;

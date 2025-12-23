@@ -23,7 +23,7 @@ if (!$studio_intro_title && !$studio_intro_description) {
 
 ?>
 
-<section id="studio-intro" class="studio-intro-section relative py-20 md:py-32 bg-brown">
+<section id="studio-intro" class="studio-intro-section relative py-20 md:pt-44 md:pb-32 bg-brown">
     <div class="container mx-auto px-4 max-w-5xl text-cream-light">
         <div class="text-center">
             
