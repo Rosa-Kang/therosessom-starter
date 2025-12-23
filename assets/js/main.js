@@ -1,3 +1,7 @@
+// Import main stylesheet - CRITICAL: This must be imported for CSS to work
+import '../css/style.scss';
+
+// Import Swiper and modules
 import Swiper from 'swiper';
 import { Navigation, Pagination, Autoplay, EffectFade } from 'swiper/modules';
 import 'swiper/css';
@@ -5,13 +9,15 @@ import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import 'swiper/css/effect-fade';
 
+// Import AOS
 import AOS from 'aos';
+import 'aos/dist/aos.css';
 
 document.addEventListener('DOMContentLoaded', () => {
     AOS.init({
-      once: true,
-      mirror: false,
-      disableMutationObserver: true,
+        once: true,
+        mirror: false,
+        disableMutationObserver: true,
     });
 
     initHeroSwiper();
@@ -192,7 +198,7 @@ function initMobileMenu() {
         if (overlay) overlay.classList.add('hidden');
         document.body.style.overflow = '';
         
-        // 메뉴 패널이 완전히 닫힌 후 초기화
+        // Reset menu after panel is fully closed
         setTimeout(resetMenu, 300); 
     }
     
@@ -202,25 +208,25 @@ function initMobileMenu() {
         
         const menuLevels = menuContainer.querySelectorAll('[class^="menu-level-"]');
         
-        // 레벨 1 이상의 모든 동적 레벨 제거
+        // Remove all dynamic levels above level 1
         for (let i = 1; i < menuLevels.length; i++) {
             menuLevels[i].remove();
         }
         
-        // 레벨 0 (메인 메뉴)를 초기 상태로 복원
+        // Restore level 0 (main menu) to initial state
         const level0 = menuContainer.querySelector('.menu-level-0');
         if (level0) {
             level0.style.left = '0%';
-            level0.style.display = 'block'; // 숨겨져 있을 수 있으므로 다시 보이게 설정
+            level0.style.display = 'block';
         }
 
-        // 컨테이너 transform 제거 (새 로직에서는 사용하지 않음)
+        // Remove container transform (not used in new logic)
         menuContainer.style.transform = '';
 
         updateBackBtnDisplay();
     }
     
-    // 뒤로가기 버튼 UI만 업데이트 (이전의 updateMenuDisplay에서 transform 로직을 분리)
+    // Update back button UI only
     function updateBackBtnDisplay() {
         if (currentDepth > 0) {
             backBtn.classList.remove('hidden');
@@ -245,19 +251,15 @@ function initMobileMenu() {
         
         if (!submenu) return;
         
-        
         const currentLevelNav = menuContainer.querySelector(`.menu-level-${currentDepth}`);
         
         currentDepth++;
         historyStack.push(parentListItem);
         
-        
         const newMenuLevel = document.createElement('nav');
-        
         newMenuLevel.classList.add(`menu-level-${currentDepth}`, 'absolute', 'top-0', 'left-0', 'w-full', 'h-full', 'p-8', 'pt-0', 'transition-all', 'duration-300', 'ease-in-out');
         newMenuLevel.style.left = '100%'; 
         newMenuLevel.style.display = 'block'; 
-        
         
         const submenuClone = submenu.cloneNode(true); 
         newMenuLevel.appendChild(submenuClone);
@@ -265,7 +267,6 @@ function initMobileMenu() {
         
         menuContainer.appendChild(newMenuLevel);
 
-        
         setTimeout(() => {
             newMenuLevel.style.left = '0%'; 
             
@@ -286,28 +287,22 @@ function initMobileMenu() {
         historyStack.pop();
         
         const prevLevelNav = menuContainer.querySelector(`.menu-level-${currentDepth}`);
-        
         const levelToRemove = document.querySelector(`.menu-level-${oldDepth}`);
 
-        
         if (prevLevelNav) {
-             prevLevelNav.style.display = 'block'; 
-             prevLevelNav.style.left = '-100%'; 
+            prevLevelNav.style.display = 'block'; 
+            prevLevelNav.style.left = '-100%'; 
         }
 
         updateBackBtnDisplay();
 
-        
         setTimeout(() => {
             if (prevLevelNav) {
-                
                 prevLevelNav.style.left = '0%'; 
             }
             
             if (levelToRemove) {
-                
                 levelToRemove.style.left = '100%'; 
-                
                 
                 setTimeout(() => {
                     levelToRemove.remove();
@@ -316,7 +311,6 @@ function initMobileMenu() {
         }, 10);
     }
 
-    
     addSubmenuToggles();
 
     toggleBtn.addEventListener('click', () => {
@@ -335,14 +329,14 @@ function initMobileMenu() {
         closeBtn.addEventListener('click', closeMenu);
     }
 
-    document.keydown = (e) => {
+    // Fix: Use addEventListener instead of direct assignment
+    document.addEventListener('keydown', (e) => {
         if (e.key === 'Escape' && toggleBtn.classList.contains('open')) {
             closeMenu();
         }
-    };
+    });
     
     panel.addEventListener('click', handleSubmenuToggle);
-    
     backBtn.addEventListener('click', handleBackButtonClick);
 }
 
@@ -362,7 +356,6 @@ function initAccordion() {
                 content.style.maxHeight = 0;
                 icon.innerHTML = '&#x2295;'; 
                 icon.style.transform = 'rotate(0deg)';
-
             } else {
                 content.style.maxHeight = content.scrollHeight + 'px';
                 icon.innerHTML = '&#x2296;'; 

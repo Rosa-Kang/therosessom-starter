@@ -12,34 +12,10 @@ if ( ! defined( 'THEME_VERSION' ) ) {
 	define( 'THEME_VERSION', wp_get_theme()->get( 'Version' ) );
 }
 
-/**
- * Enqueue scripts and styles.
- */
-function therosessom_asset_loader() {
-	// Production: Load scripts from the manifest file
-	$manifest_path = get_template_directory() . '/dist/.vite/manifest.json';
-	if ( file_exists( $manifest_path ) ) {
-		$manifest = json_decode( file_get_contents( $manifest_path ), true );
-
-		// Enqueue the main JS file
-		if ( isset( $manifest['assets/js/main.js']['file'] ) ) {
-			wp_enqueue_script( 'therosessom-main-js', get_template_directory_uri() . '/dist/' . $manifest['assets/js/main.js']['file'], [], THEME_VERSION, true );
-		}
-
-		// Enqueue CSS files for the main JS entry
-		if ( isset( $manifest['assets/js/main.js']['css'] ) ) {
-			foreach ( $manifest['assets/js/main.js']['css'] as $css_file ) {
-				wp_enqueue_style( 'therosessom-' . basename($css_file, '.css'), get_template_directory_uri() . '/dist/' . $css_file, [], THEME_VERSION );
-			}
-		}
-
-		// Enqueue the main CSS file
-		if ( isset( $manifest['assets/css/style.scss']['file'] ) ) {
-			wp_enqueue_style( 'therosessom-main-css', get_template_directory_uri() . '/dist/' . $manifest['assets/css/style.scss']['file'], [], THEME_VERSION );
-		}
-	}
+// Vite dev server URL
+if ( ! defined( 'VITE_DEV_SERVER' ) ) {
+	define( 'VITE_DEV_SERVER', 'http://localhost:3000' );
 }
-add_action( 'wp_enqueue_scripts', 'therosessom_asset_loader' );
 
 /**
  * Sets up theme defaults and registers support for various WordPress features.
@@ -103,100 +79,161 @@ function therosessom_widgets_init() {
 add_action( 'widgets_init', 'therosessom_widgets_init' );
 
 /**
+ * Check if Vite dev server is running
+ */
+function is_vite_dev_server_running() {
+	// Check if dev server is accessible
+	$ch = curl_init( VITE_DEV_SERVER );
+	curl_setopt( $ch, CURLOPT_NOBODY, true );
+	curl_setopt( $ch, CURLOPT_TIMEOUT, 1 );
+	curl_setopt( $ch, CURLOPT_RETURNTRANSFER, true );
+	curl_exec( $ch );
+	$response_code = curl_getinfo( $ch, CURLINFO_HTTP_CODE );
+	curl_close( $ch );
+	
+	return $response_code >= 200 && $response_code < 400;
+}
+
+/**
  * Enqueue scripts and styles with Vite.
  */
-function vite_asset_loader() {
-    // Check if the Vite dev server is running
-    $is_dev = file_exists( get_template_directory() . '/.dev' );
+function therosessom_enqueue_assets() {
+	// Check if we're in development mode
+	$is_dev = defined('WP_DEBUG') && WP_DEBUG && is_vite_dev_server_running();
 
-    if ( $is_dev ) {
-        // Development: Load scripts from Vite dev server
-        // Vite dev server handles CSS through HMR (Hot Module Replacement)
-        wp_enqueue_script( 'vite-client', VITE_DEV_SERVER . '/@vite/client', [], null, true );
-        wp_enqueue_script( 'therosessom-main-js', VITE_DEV_SERVER . '/assets/js/main.js', [], THEME_VERSION, true );
+	if ( $is_dev ) {
+		// Development: Load scripts from Vite dev server
+		wp_enqueue_script( 
+			'vite-client', 
+			VITE_DEV_SERVER . '/@vite/client', 
+			[], 
+			null, 
+			true 
+		);
+		
+		wp_enqueue_script( 
+			'therosessom-main-js', 
+			VITE_DEV_SERVER . '/assets/js/main.js', 
+			[], 
+			THEME_VERSION, 
+			true 
+		);
+		
+		// In dev mode, Vite handles CSS through HMR
+	} else {
+		// Production: Load scripts from the manifest file
+		$manifest_path = get_template_directory() . '/dist/.vite/manifest.json';
+		
+		if ( file_exists( $manifest_path ) ) {
+			$manifest = json_decode( file_get_contents( $manifest_path ), true );
 
-    } else {
-        // Production: Load scripts from the manifest file
-        $manifest_path = get_template_directory() . '/dist/.vite/manifest.json';
-        if ( file_exists( $manifest_path ) ) {
-            $manifest = json_decode( file_get_contents( $manifest_path ), true );
+			// Enqueue the main JS file
+			if ( isset( $manifest['assets/js/main.js']['file'] ) ) {
+				wp_enqueue_script( 
+					'therosessom-main-js', 
+					get_template_directory_uri() . '/dist/' . $manifest['assets/js/main.js']['file'], 
+					[], 
+					THEME_VERSION, 
+					true 
+				);
+			}
 
-            // Enqueue the main JS file
-            if ( isset( $manifest['assets/js/main.js']['file'] ) ) {
-                wp_enqueue_script( 'therosessom-main-js', get_template_directory_uri() . '/dist/' . $manifest['assets/js/main.js']['file'], [], THEME_VERSION, true );
-            }
+			// Enqueue CSS files that are imported by main.js
+			if ( isset( $manifest['assets/js/main.js']['css'] ) ) {
+				foreach ( $manifest['assets/js/main.js']['css'] as $index => $css_file ) {
+					wp_enqueue_style( 
+						'therosessom-js-css-' . $index, 
+						get_template_directory_uri() . '/dist/' . $css_file, 
+						[], 
+						THEME_VERSION 
+					);
+				}
+			}
 
-            // Enqueue CSS files for the main JS entry
-            if ( isset( $manifest['assets/js/main.js']['css'] ) ) {
-                foreach ( $manifest['assets/js/main.js']['css'] as $css_file ) {
-                    wp_enqueue_style( 'therosessom-' . basename($css_file, '.css'), get_template_directory_uri() . '/dist/' . $css_file, [], THEME_VERSION );
-                }
-            }
-
-            // Enqueue the main CSS file
-            if ( isset( $manifest['assets/css/style.scss']['file'] ) ) {
-                wp_enqueue_style( 'therosessom-main-css', get_template_directory_uri() . '/dist/' . $manifest['assets/css/style.scss']['file'], [], THEME_VERSION );
-            }
-        }
-    }
+			// Enqueue the main CSS file (style.scss entry)
+			if ( isset( $manifest['assets/css/style.scss']['file'] ) ) {
+				wp_enqueue_style( 
+					'therosessom-main-css', 
+					get_template_directory_uri() . '/dist/' . $manifest['assets/css/style.scss']['file'], 
+					[], 
+					THEME_VERSION 
+				);
+			}
+		} else {
+			// Fallback: Log error if manifest doesn't exist
+			error_log( 'Vite manifest file not found at: ' . $manifest_path );
+		}
+	}
 }
-add_action( 'wp_enqueue_scripts', 'vite_asset_loader' );
+add_action( 'wp_enqueue_scripts', 'therosessom_enqueue_assets' );
 
 /**
- * Add module type to the main script tag to support ES modules.
+ * Add module type to script tags for ES modules support.
  */
-add_filter('script_loader_tag', function (string $tag, string $handle, string $src) {
-    if (in_array($handle, ['vite-client', 'therosessom-main-js'])) {
-        return '<script type="module" src="' . esc_url($src) . '" defer></script>';
-    }
-    return $tag;
-}, 10, 3);
-
+function therosessom_add_module_to_script( $tag, $handle, $src ) {
+	// Add type="module" to Vite scripts
+	if ( in_array( $handle, ['vite-client', 'therosessom-main-js'], true ) ) {
+		return '<script type="module" src="' . esc_url( $src ) . '"></script>' . "\n";
+	}
+	return $tag;
+}
+add_filter( 'script_loader_tag', 'therosessom_add_module_to_script', 10, 3 );
 
 /**
- * ACF JSON Save/Load Points
+ * ACF JSON Save Point
  * Enables version control for ACF fields
  */
-add_filter('acf/settings/save_json', function($path) {
-    return get_stylesheet_directory() . '/acf-json';
-});
+function therosessom_acf_json_save_point( $path ) {
+	return get_stylesheet_directory() . '/acf-json';
+}
+add_filter( 'acf/settings/save_json', 'therosessom_acf_json_save_point' );
 
-add_filter('acf/settings/load_json', function($paths) {
-    unset($paths[0]);
-    $paths[] = get_stylesheet_directory() . '/acf-json';
-    return $paths;
-});
+/**
+ * ACF JSON Load Point
+ * Load ACF fields from JSON files
+ */
+function therosessom_acf_json_load_point( $paths ) {
+	// Remove original path
+	unset( $paths[0] );
+	
+	// Add custom path
+	$paths[] = get_stylesheet_directory() . '/acf-json';
+	
+	return $paths;
+}
+add_filter( 'acf/settings/load_json', 'therosessom_acf_json_load_point' );
 
 /**
  * Auto-sync ACF JSON fields on admin init
  * Automatically syncs field groups from JSON files
  */
-add_action('admin_init', function() {
-    // Only run in admin area and if ACF is active
-    if (!function_exists('acf_get_field_groups')) {
-        return;
-    }
-    
-    // Get all field groups from JSON
-    $json_files = glob(get_stylesheet_directory() . '/acf-json/*.json');
-    
-    if (empty($json_files)) {
-        return;
-    }
-    
-    foreach ($json_files as $file) {
-        $json = json_decode(file_get_contents($file), true);
-        
-        if (!$json || !isset($json['key'])) {
-            continue;
-        }
-        
-        // Check if field group exists in database
-        $field_group = acf_get_field_group($json['key']);
-        
-        // If doesn't exist or modified time is different, import it
-        if (!$field_group || (isset($json['modified']) && $field_group['modified'] != $json['modified'])) {
-            acf_import_field_group($json);
-        }
-    }
-});
+function therosessom_acf_json_sync() {
+	// Only run in admin area and if ACF is active
+	if ( ! is_admin() || ! function_exists( 'acf_get_field_groups' ) ) {
+		return;
+	}
+	
+	// Get all field groups from JSON
+	$json_files = glob( get_stylesheet_directory() . '/acf-json/*.json' );
+	
+	if ( empty( $json_files ) ) {
+		return;
+	}
+	
+	foreach ( $json_files as $file ) {
+		$json = json_decode( file_get_contents( $file ), true );
+		
+		if ( ! $json || ! isset( $json['key'] ) ) {
+			continue;
+		}
+		
+		// Check if field group exists in database
+		$field_group = acf_get_field_group( $json['key'] );
+		
+		// If doesn't exist or modified time is different, import it
+		if ( ! $field_group || ( isset( $json['modified'] ) && $field_group['modified'] != $json['modified'] ) ) {
+			acf_import_field_group( $json );
+		}
+	}
+}
+add_action( 'admin_init', 'therosessom_acf_json_sync' );

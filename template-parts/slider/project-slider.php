@@ -23,7 +23,7 @@ while (have_rows('project_slider_sections')) : the_row();
     <div class="container mx-auto px-4 max-w-5xl" data-aos="fade-in" data-aos-duration="300">
 
         <?php if ($section_title) : ?>
-            <h2 class="text-cream-light text-xl md:text-2xl uppercase text-center mb-10 font-sans tracking-widest">
+            <h2 class="text-cream-light text-xl md:text-2xl uppercase text-center mb-10 font-serif tracking-widest">
                 <?php echo esc_html($section_title); ?>
             </h2>
         <?php endif; ?>

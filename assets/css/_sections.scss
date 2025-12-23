@@ -68,6 +68,13 @@
     .swiper-button-next {
       opacity: 0;
       transition: opacity 0.3s ease;
+      background-repeat: no-repeat;
+      background-size: contain;
+      background-position: center;
+
+      &::after {
+        display: none;
+      }
        
       @media (hover: hover) {
         .hero-section:hover & {
@@ -83,7 +90,7 @@
         opacity: 0.7;
       }
     }
-     
+
     .swiper-pagination {
       .swiper-pagination-bullet {
         background: white;
@@ -101,11 +108,38 @@
     }
   }
 
+  .project-swiper-prev,
+  .project-swiper-next {
+    opacity: 0.8;
+    transition: opacity 0.3s ease;
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+    width: 2.5rem;
+    height: 2.5rem;
+
+    &::after {
+      display: none;
+    }
+
+    &:hover {
+      opacity: 1;
+    }
+  }
+
+  .project-swiper-prev {
+    background-image: url('../images/arrow-backward.svg');
+  }
+
+  .project-swiper-next {
+    background-image: url('../images/arrow-forward.svg');
+  }
+
    // Intro Section Styles
   .intro-section {
     position: relative;
     min-height: 100vh;
-    background-color: #F5F2ED; // cream-light from tailwind config
+    background-color: #F5F2ED; 
     
     // Polaroid Frame
     .intro-polaroid {

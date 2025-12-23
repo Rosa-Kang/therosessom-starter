@@ -18,7 +18,11 @@
     "src": "assets/js/main.js",
     "isEntry": true,
     "css": [
-      "css/main.css"
+      "css/main.css",
+      "css/style.css"
+    ],
+    "assets": [
+      "assets/perfectly-nineties.woff2"
     ]
   }
 }
